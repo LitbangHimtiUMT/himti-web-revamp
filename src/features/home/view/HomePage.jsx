@@ -2,6 +2,7 @@ import MainLayout from "../../layout/view/MainLayout"
 import HeroSection from "../components/HeroSection";
 import FeatureList from "../components/FeatureList";
 import useHomeData from "../hooks/useHomeData";
+import SharingSection from "../../sharing/views/SharingPage"
 
 export default function HomePage() {
   const features = useHomeData();
@@ -14,6 +15,7 @@ export default function HomePage() {
       ) : (
         <FeatureList features={features} />
       )}
+      <SharingSection></SharingSection>
     </MainLayout>
   );
 }
