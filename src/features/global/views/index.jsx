@@ -1,5 +1,5 @@
 export const index = () => {
   return (
-    <div>index</div>
+    <div>testig</div>
   )
 }

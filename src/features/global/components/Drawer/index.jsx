@@ -1,8 +1,8 @@
 import { createPortal } from "react-dom";
 import PropTypes from "prop-types";
 import { BiChevronLeft } from "react-icons/bi";
-import { Poppins } from "../Text";
-import { ConditionNode } from "../ConditionNode";
+import { Poppins } from "../Text/index";
+// import { ConditionNode } from "../ConditionNode"; // Baris ini dihapus
 
 export const Drawer = ({
   onHide,
@@ -46,9 +46,10 @@ export const Drawer = ({
                   <BiChevronLeft size={24} />
                 ) : null}
               </div>
-              <ConditionNode condition={!!close?.title}>
+              {/* Mengganti ConditionNode dengan conditional rendering standar */}
+              {!!close?.title && (
                 <Poppins className="text-sm">{close?.title || "Back"}</Poppins>
-              </ConditionNode>
+              )}
             </div>
             {children}
           </div>

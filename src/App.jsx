@@ -1,11 +1,13 @@
 import "./App.css";
-import { Input } from "./features/global/components/Input";
+import HomePage from "./features/home/view/HomePage";
+
+
 
 function App() {
   return (
     <>
-      <p>Hello World!</p>
-      <Input />
+    <HomePage></HomePage>
+
     </>
   );
 }
