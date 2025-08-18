@@ -1,5 +1,5 @@
 import AboutSection from "../components/AboutSection"
-import MainLayout from "../../global/layouts/MainLayout"
+import MainLayout from "../../layout/view/MainLayout"
 
 function AboutPage() {
   return (

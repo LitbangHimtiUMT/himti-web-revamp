@@ -8,7 +8,7 @@ import { HiOutlineMenuAlt3, HiX } from "react-icons/hi"; // Mengimpor ikon
 const navLinks = [
   { name: "Home", to: "/" },
   { name: "Sharing", to: "/sharing" },
-  { name: "Study Group", to: "/study-group" },
+  { name: "Dosen", to: "/dosen" },
   { name: "About", to: "/about" },
 ];
 
