@@ -6,19 +6,20 @@ export default function PrestasiSection() {
     <section className="bg-white">
       <div className="max-w-7xl mx-auto px-4 py-10 text-center">
         <Poppins className="inline-block bg-yellow-400 text-black px-4 py-1 rounded-full text-sm font-semibold tracking-wider uppercase">
-  Pencapaian Kami
-</Poppins>
+          Pencapaian Kami
+        </Poppins>
         <h2 className="mt-2 text-4xl md:text-5xl font-bold text-gray-900">
           Jejak Prestasi HIMTI UMT
         </h2>
         <Poppins className="mt-4 max-w-2xl mx-auto text-lg text-gray-500">
-          Beberapa dari sekian banyak pencapaian yang telah diraih oleh anggota dan tim HIMTI dalam berbagai kompetisi nasional.
+          Beberapa dari sekian banyak pencapaian yang telah diraih oleh anggota
+          dan tim HIMTI dalam berbagai kompetisi nasional.
         </Poppins>
       </div>
 
       <ParallaxScroll items={prestasiItems} />
 
-      <div className="text-center pb-20"/>
+      <div className="text-center pb-20" />
     </section>
   );
 }
@@ -26,7 +27,8 @@ export default function PrestasiSection() {
 const prestasiItems = [
   {
     title: "Lomba Startup Inovation",
-    description: "Diadakan oleh PERMIKOMNAS Wilayah IV Banten (10-11 April 2021).",
+    description:
+      "Diadakan oleh PERMIKOMNAS Wilayah IV Banten (10-11 April 2021).",
     badge: "Juara II",
     src: "/images/lomba-startup.jpg",
   },

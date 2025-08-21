@@ -1,8 +1,8 @@
 import { StickyScroll } from "./StickyScrollReveal";
 import { Poppins } from "../../../global/components/Text";
 import { Button } from "../../../global/components/Button";
-import { NavLink } from "react-router-dom";           
-import { ArrowRight } from "lucide-react";                
+import { NavLink } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 
 // Data untuk section
 const programContent = [
@@ -10,7 +10,10 @@ const programContent = [
     title: "Web Development",
     description: (
       <>
-        <p>Belajar membangun website interaktif dari awal menggunakan teknologi modern seperti React.js dan TailwindCSS.</p>
+        <p>
+          Belajar membangun website interaktif dari awal menggunakan teknologi
+          modern seperti React.js dan TailwindCSS.
+        </p>
         <div className="mt-4">
           <NavLink to="/sharing">
             <Button variant="secondary" size="md" rounded="full">
@@ -38,9 +41,12 @@ const programContent = [
   {
     title: "Mobile Development",
     description: (
-       <>
-      <p>Kuasai pengembangan aplikasi mobile cross-platform dengan Flutter untuk Android dan iOS.</p>
-         <div className="mt-4">
+      <>
+        <p>
+          Kuasai pengembangan aplikasi mobile cross-platform dengan Flutter
+          untuk Android dan iOS.
+        </p>
+        <div className="mt-4">
           <NavLink to="/sharing">
             <Button variant="secondary" size="md" rounded="full">
               <div className="flex items-center gap-2 px-2">
@@ -53,7 +59,7 @@ const programContent = [
       </>
     ),
     content: (
-       <div className="h-full w-full flex items-center justify-center">
+      <div className="h-full w-full flex items-center justify-center">
         <img
           src="https://images.unsplash.com/photo-1614113489855-66422ad300a4?q=80&w=800&auto=format&fit=crop"
           width={300}
@@ -67,9 +73,12 @@ const programContent = [
   {
     title: "UI/UX Design",
     description: (
-       <>
-       <p>Rancang antarmuka yang cantik dan fungsional. Belajar proses desain dari riset hingga prototipe dengan Figma.</p>
-         <div className="mt-4">
+      <>
+        <p>
+          Rancang antarmuka yang cantik dan fungsional. Belajar proses desain
+          dari riset hingga prototipe dengan Figma.
+        </p>
+        <div className="mt-4">
           <NavLink to="/sharing">
             <Button variant="secondary" size="md" rounded="full">
               <div className="flex items-center gap-2 px-2">
@@ -82,7 +91,7 @@ const programContent = [
       </>
     ),
     content: (
-       <div className="h-full w-full flex items-center justify-center">
+      <div className="h-full w-full flex items-center justify-center">
         <img
           src="/images/kb-uiux.jpg"
           width={300}
@@ -93,12 +102,15 @@ const programContent = [
       </div>
     ),
   },
-   {
+  {
     title: "Cyber Security",
     description: (
-       <>
-        <p>Pelatihan mendalam seputar keamanan digital untuk meningkatkan pemahaman anggota HIMTI dalam menghadapi ancaman siber.</p>
-         <div className="mt-4">
+      <>
+        <p>
+          Pelatihan mendalam seputar keamanan digital untuk meningkatkan
+          pemahaman anggota HIMTI dalam menghadapi ancaman siber.
+        </p>
+        <div className="mt-4">
           <NavLink to="/sharing">
             <Button variant="secondary" size="md" rounded="full">
               <div className="flex items-center gap-2 px-2">
@@ -111,7 +123,7 @@ const programContent = [
       </>
     ),
     content: (
-       <div className="h-full w-full flex items-center justify-center">
+      <div className="h-full w-full flex items-center justify-center">
         <img
           src="/images/kb-jaringan.jpg"
           width={300}
@@ -127,7 +139,7 @@ const programContent = [
 export default function ProgramSection() {
   return (
     <section className="py-1 bg-white">
-       <div className="max-w-7xl mx-auto px-4 text-center mb-12">
+      <div className="max-w-7xl mx-auto px-4 text-center mb-12">
         <Poppins className="text-white font-semibold bg-gradient-to-r from-[#4C76A3] to-[#203D5D] px-6 py-2 rounded-full px-4 py-1 tracking-wider uppercase text-sm mx-auto text-center w-fit">
           Program & Pembelajaran
         </Poppins>
@@ -135,7 +147,8 @@ export default function ProgramSection() {
           Kuasai Skill Teknologi Terkini
         </h2>
         <Poppins className="mt-4 max-w-2xl mx-auto text-lg text-gray-500">
-          Pilih jalur pembelajaran yang sesuai dengan minat dan bakatmu, dari pengembangan web hingga keamanan siber.
+          Pilih jalur pembelajaran yang sesuai dengan minat dan bakatmu, dari
+          pengembangan web hingga keamanan siber.
         </Poppins>
       </div>
       <div className="p-10">

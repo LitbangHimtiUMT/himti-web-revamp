@@ -25,7 +25,10 @@ const Card = ({ item }) => {
         <Poppins className="text-sm mt-1 text-gray-300">
           {item.description}
         </Poppins>
-        <a href="#" className="flex items-center gap-1 mt-4 text-yellow-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <a
+          href="#"
+          className="flex items-center gap-1 mt-4 text-yellow-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        >
           Read More <ArrowUpRight size={16} />
         </a>
       </div>

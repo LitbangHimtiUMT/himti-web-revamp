@@ -69,7 +69,6 @@ export default function ImageReveal() {
           className="p-2 cursor-pointer relative sm:flex items-center justify-between"
           onMouseEnter={() => onHoverActivate(item)}
         >
-          
           {!isLargeScreen && (
             <img
               src={item.url}

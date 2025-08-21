@@ -3,10 +3,7 @@ import React, { useRef } from "react";
 import { useMotionValueEvent, useScroll, motion } from "framer-motion";
 import { cn } from "../../../../lib/utils";
 
-export const StickyScroll = ({
-  content,
-  contentClassName,
-}) => {
+export const StickyScroll = ({ content, contentClassName }) => {
   const [activeCard, setActiveCard] = React.useState(0);
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -25,7 +22,7 @@ export const StickyScroll = ({
         }
         return acc;
       },
-      0
+      0,
     );
     setActiveCard(closestBreakpointIndex);
   });
@@ -85,7 +82,7 @@ export const StickyScroll = ({
         }}
         className={cn(
           "hidden lg:block h-60 w-80 rounded-md bg-white sticky top-10 overflow-hidden",
-          contentClassName
+          contentClassName,
         )}
       >
         {content[activeCard].content ?? null}

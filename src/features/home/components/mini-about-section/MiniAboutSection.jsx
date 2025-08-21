@@ -1,15 +1,13 @@
 import RotatingText from "./RotatingText";
 import ImageReveal from "./ImageReveal";
-import { Poppins } from "../../../global/components/Text/index"
-import { Button } from "../../../global/components/Button"; 
-import { NavLink } from "react-router-dom";              
-import { ArrowRight } from "lucide-react";              
-
+import { Poppins } from "../../../global/components/Text/index";
+import { Button } from "../../../global/components/Button";
+import { NavLink } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 
 export default function MiniAboutTitle() {
   return (
     <div className="relative px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 overflow-hidden">
-
       {/* Grid konten */}
       <div className="relative grid gap-5 row-gap-8 lg:grid-cols-2 z-10">
         <div className="flex flex-col justify-center">
@@ -33,9 +31,9 @@ export default function MiniAboutTitle() {
             <Poppins className="text-base text-gray-600 md:text-lg text-center sm:text-left">
               Himpunan Mahasiswa Teknik Informatika Universitas Muhammadiyah
               Tangerang atau HIMTI - UMT adalah himpunan kampus yang tidak hanya
-              berfokus pada organisasi saja tetapi terhadap akademik juga, bahkan
-              tujuan utama HIMTI yaitu untuk meningkatkan nilai akademik Mahasiswa
-              Teknik Informatika Universitas Muhammadiyah Tangerang.
+              berfokus pada organisasi saja tetapi terhadap akademik juga,
+              bahkan tujuan utama HIMTI yaitu untuk meningkatkan nilai akademik
+              Mahasiswa Teknik Informatika Universitas Muhammadiyah Tangerang.
             </Poppins>
 
             <div className="mt-8 flex justify-center sm:justify-start">

@@ -414,7 +414,8 @@ export const SparklesCore = (props) => {
               },
             },
             detectRetina: true,
-          }} />
+          }}
+        />
       )}
     </motion.div>
   );

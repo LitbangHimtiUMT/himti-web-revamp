@@ -88,7 +88,7 @@ const RotatingText = forwardRef((props, ref) => {
       }
       return Math.abs(staggerFrom - index) * staggerDuration;
     },
-    [staggerFrom, staggerDuration]
+    [staggerFrom, staggerDuration],
   );
 
   const handleIndexChange = useCallback(
@@ -96,7 +96,7 @@ const RotatingText = forwardRef((props, ref) => {
       setCurrentTextIndex(newIndex);
       if (onNext) onNext(newIndex);
     },
-    [onNext]
+    [onNext],
   );
 
   const next = useCallback(() => {
@@ -130,7 +130,7 @@ const RotatingText = forwardRef((props, ref) => {
         handleIndexChange(validIndex);
       }
     },
-    [texts.length, currentTextIndex, handleIndexChange]
+    [texts.length, currentTextIndex, handleIndexChange],
   );
 
   const reset = useCallback(() => {
@@ -147,7 +147,7 @@ const RotatingText = forwardRef((props, ref) => {
       jumpTo,
       reset,
     }),
-    [next, previous, jumpTo, reset]
+    [next, previous, jumpTo, reset],
   );
 
   useEffect(() => {
@@ -160,20 +160,23 @@ const RotatingText = forwardRef((props, ref) => {
     <motion.span
       className={cn(
         "flex flex-wrap whitespace-pre-wrap relative",
-        mainClassName
+        mainClassName,
       )}
       {...rest}
       layout
       transition={transition}
     >
       <span className="sr-only">{texts[currentTextIndex]}</span>
-      <AnimatePresence mode={animatePresenceMode} initial={animatePresenceInitial}>
+      <AnimatePresence
+        mode={animatePresenceMode}
+        initial={animatePresenceInitial}
+      >
         <motion.span
           key={currentTextIndex}
           className={cn(
             splitBy === "lines"
               ? "flex flex-col w-full"
-              : "flex flex-wrap whitespace-pre-wrap relative"
+              : "flex flex-wrap whitespace-pre-wrap relative",
           )}
           layout
           aria-hidden="true"
@@ -183,7 +186,10 @@ const RotatingText = forwardRef((props, ref) => {
               .slice(0, wordIndex)
               .reduce((sum, word) => sum + word.characters.length, 0);
             return (
-              <span key={wordIndex} className={cn("inline-flex", splitLevelClassName)}>
+              <span
+                key={wordIndex}
+                className={cn("inline-flex", splitLevelClassName)}
+              >
                 {wordObj.characters.map((char, charIndex) => (
                   <motion.span
                     key={charIndex}
@@ -194,7 +200,10 @@ const RotatingText = forwardRef((props, ref) => {
                       ...transition,
                       delay: getStaggerDelay(
                         previousCharsCount + charIndex,
-                        array.reduce((sum, word) => sum + word.characters.length, 0)
+                        array.reduce(
+                          (sum, word) => sum + word.characters.length,
+                          0,
+                        ),
                       ),
                     }}
                     className={cn("inline-block", elementLevelClassName)}
@@ -202,7 +211,9 @@ const RotatingText = forwardRef((props, ref) => {
                     {char}
                   </motion.span>
                 ))}
-                {wordObj.needsSpace && <span className="whitespace-pre"> </span>}
+                {wordObj.needsSpace && (
+                  <span className="whitespace-pre"> </span>
+                )}
               </span>
             );
           })}

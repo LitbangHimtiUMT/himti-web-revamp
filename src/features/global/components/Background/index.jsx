@@ -31,7 +31,7 @@ export const GridBackground = ({
           const updatedIsDarkModeActive =
             document.documentElement.classList.contains("dark");
           setCurrentGridColor(
-            updatedIsDarkModeActive ? darkGridColor : gridColor
+            updatedIsDarkModeActive ? darkGridColor : gridColor,
           );
         }
       });
@@ -48,7 +48,7 @@ export const GridBackground = ({
     <div
       className={cn(
         "absolute inset-0 -z-10 w-full items-center justify-center bg-white dark:bg-black",
-        className
+        className,
       )}
       {...props}
     >
@@ -114,9 +114,7 @@ export const DotBackground = ({
         if (mutation.attributeName === "class") {
           const updatedIsDarkModeActive =
             document.documentElement.classList.contains("dark");
-          setCurrentDotColor(
-            updatedIsDarkModeActive ? darkDotColor : dotColor
-          );
+          setCurrentDotColor(updatedIsDarkModeActive ? darkDotColor : dotColor);
         }
       });
     });
@@ -132,7 +130,7 @@ export const DotBackground = ({
     <div
       className={cn(
         "absolute flex h-[50rem] w-full items-center justify-center bg-white dark:bg-black",
-        className
+        className,
       )}
       {...props}
     >
