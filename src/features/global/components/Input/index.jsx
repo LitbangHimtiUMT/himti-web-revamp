@@ -25,10 +25,10 @@ export const Input = forwardRef(
             rounded == "full"
               ? "rounded-full"
               : rounded == "sm"
-              ? "rounded-sm"
-              : rounded == "md"
-              ? "rounded-md"
-              : "rounded-lg"
+                ? "rounded-sm"
+                : rounded == "md"
+                  ? "rounded-md"
+                  : "rounded-lg"
           }`}
         >
           {LeftIcon && inputStyle === "icon" && (
@@ -54,7 +54,7 @@ export const Input = forwardRef(
               if (currency) {
                 const numericValue = Number(e.target.value.replace(/\D/g, "")); // Menghapus semua karakter non-digit
                 const formatted = new Intl.NumberFormat("id-ID").format(
-                  numericValue
+                  numericValue,
                 );
                 e.target.value = numericValue.toString();
                 setFormatedValue(formatted);
@@ -69,17 +69,17 @@ export const Input = forwardRef(
             inputSize === "sm"
               ? "px-2"
               : inputSize === "md"
-              ? "px-4"
-              : inputSize === "lg"
-              ? "px-6"
-              : ""
+                ? "px-4"
+                : inputSize === "lg"
+                  ? "px-6"
+                  : ""
           }
               ${
                 inputSize === "sm"
                   ? "h-8"
                   : inputSize === "md"
-                  ? "h-10"
-                  : "h-12"
+                    ? "h-10"
+                    : "h-12"
               }
           ${inputSize === "sm" ? "py-2" : inputSize === "md" ? "py-3" : "py-4"}
           ${LeftIcon ? "pl-10" : ""}
@@ -88,8 +88,8 @@ export const Input = forwardRef(
             error
               ? "border-red-500"
               : borderColor === "black"
-              ? "border-black"
-              : "border-[#DADADA]"
+                ? "border-black"
+                : "border-[#DADADA]"
           }
           focus:border
           placeholder:text-sm
@@ -111,10 +111,10 @@ export const Input = forwardRef(
             rounded == "full"
               ? "rounded-full"
               : rounded == "sm"
-              ? "rounded-sm"
-              : rounded == "md"
-              ? "rounded-md"
-              : "rounded-lg"
+                ? "rounded-sm"
+                : rounded == "md"
+                  ? "rounded-md"
+                  : "rounded-lg"
           }
           `}
           />
@@ -137,7 +137,7 @@ export const Input = forwardRef(
         )}
       </div>
     );
-  }
+  },
 );
 
 Input.displayName = "Input";

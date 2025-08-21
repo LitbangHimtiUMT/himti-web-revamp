@@ -1,14 +1,11 @@
-import AboutSection from "../components/AboutSection"
-import MainLayout from "../../layout/view/MainLayout"
+import AboutIntroSection from "../components/about-section/AboutIntroSection";
 
 function AboutPage() {
   return (
     <>
-    <MainLayout>
-        <AboutSection />
-    </MainLayout>
+      <AboutIntroSection />
     </>
-  )
+  );
 }
 
-export default AboutPage
+export default AboutPage;

@@ -1,15 +1,17 @@
-import { Navbar } from "../../layout/components/Navbar";
+import { Outlet } from "react-router-dom";
+import Navbar from "../../layout/components/Navbar";
 import Footer from "../../layout/components/Footer";
+import { GridBackground } from "../../global/components/Background/index";
 
-// eslint-disable-next-line react/prop-types
-export default function MainLayout({ children }) {
+export default function MainLayout() {
   return (
-    <>
+    <GridBackground>
       <Navbar />
-      <main style={{ minHeight: "80vh", padding: "1rem" }}>
-        {children}
+      <main className="pt-10">
+        <Outlet />
       </main>
       <Footer />
-    </>
+    </GridBackground>
   )
 }
+

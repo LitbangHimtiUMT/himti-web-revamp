@@ -1,19 +1,17 @@
-import MainLayout from "../../layout/view/MainLayout"
-import HeroSection from "../components/HeroSection";
-import FeatureList from "../components/FeatureList";
-import useHomeData from "../hooks/useHomeData";
+import HeroSection from "../components/hero-section/HeroSection";
+import MiniAboutSection from "../components/mini-about-section/MiniAboutSection";
+import PrestasiSection from "../components/prestasi-section/PrestasiSection";
+import ProgramSection from "../components/program-section/ProgramSection";
+import AlumniSection from "../components/alumni-section/AlumniSection";
 
 export default function HomePage() {
-  const features = useHomeData();
-
   return (
-    <MainLayout>
+    <>
       <HeroSection />
-      {features.length === 0 ? (
-        <p className="text-center py-10 text-gray-500">Loading features...</p>
-      ) : (
-        <FeatureList features={features} />
-      )}
-    </MainLayout>
+      <MiniAboutSection />
+      <PrestasiSection />
+      <ProgramSection />
+      <AlumniSection />
+    </>
   );
 }

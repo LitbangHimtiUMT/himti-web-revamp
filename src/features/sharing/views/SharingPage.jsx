@@ -1,16 +1,13 @@
-import SharingSection from "../components/SharingSection"
-import MainLayout from "../../layout/view/MainLayout"
-import HeroSection from "../components/HeroSection"
+import SharingSection from "../components/SharingSection";
+import HeroSection from "../components/HeroSection";
 
 function SharingPage() {
   return (
     <>
-     <MainLayout>
-        <HeroSection />
-        <SharingSection />
-     </MainLayout>
+      <HeroSection />
+      <SharingSection />
     </>
-  )
+  );
 }
 
-export default SharingPage
+export default SharingPage;
