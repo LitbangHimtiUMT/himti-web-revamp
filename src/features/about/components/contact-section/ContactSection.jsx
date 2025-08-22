@@ -42,10 +42,10 @@ export default function ContactSection() {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
-            Gabung bersama HIMTI UMT
+            Hubungi Kami
           </h2>
           <Poppins className="mt-4 max-w-2xl mx-auto text-lg text-gray-500">
-            Tumbuhkan potensimu bersama komunitas teknologi!
+            Buka peluang baru dalam belajar, berjejaring, dan berkolaborasi. Klik untuk terhubung dengan HIMTI UMT!
           </Poppins>
         </motion.div>
         
