@@ -29,7 +29,7 @@ const programContent = [
     content: (
       <div className="h-full w-full flex items-center justify-center">
         <img
-          src="https://images.unsplash.com/photo-1509718443690-d8e2fb3474b7?q=80&w=800&auto=format&fit=crop"
+          src="/images/program/web.jpg"
           width={300}
           height={300}
           className="h-full w-full object-cover"
@@ -61,7 +61,7 @@ const programContent = [
     content: (
       <div className="h-full w-full flex items-center justify-center">
         <img
-          src="https://images.unsplash.com/photo-1614113489855-66422ad300a4?q=80&w=800&auto=format&fit=crop"
+          src="/images/program/mobile.jpg"
           width={300}
           height={300}
           className="h-full w-full object-cover"
@@ -93,7 +93,7 @@ const programContent = [
     content: (
       <div className="h-full w-full flex items-center justify-center">
         <img
-          src="/images/kb-uiux.jpg"
+          src="/images/program/uiux.jpg"
           width={300}
           height={300}
           className="h-full w-full object-cover"
@@ -125,7 +125,7 @@ const programContent = [
     content: (
       <div className="h-full w-full flex items-center justify-center">
         <img
-          src="/images/kb-jaringan.jpg"
+          src="/images/program/cyber.jpg"
           width={300}
           height={300}
           className="h-full w-full object-cover"

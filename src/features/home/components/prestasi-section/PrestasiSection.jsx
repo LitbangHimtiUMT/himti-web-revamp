@@ -30,36 +30,36 @@ const prestasiItems = [
     description:
       "Diadakan oleh PERMIKOMNAS Wilayah IV Banten (10-11 April 2021).",
     badge: "Juara II",
-    src: "/images/lomba-startup.jpg",
+    src: "/images/prestasi/lomba-startup.jpg",
   },
   {
     title: "Lomba Short Movie",
     description: "Diadakan oleh BEM Global Institute (21 April 2021).",
     badge: "Juara II",
-    src: "/images/lomba-shortmovie.jpg",
+    src: "/images/prestasi/lomba-shortmovie.jpg",
   },
   {
     title: "Lomba Design Grafis",
     description: "Diadakan oleh Universitas Darma Persada, Jakarta Timur.",
     badge: "Juara II",
-    src: "/images/lomba-design.jpg",
+    src: "/images/prestasi/lomba-design.jpg",
   },
   {
     title: "Lomba Poster",
     description: "Diadakan oleh PERMIKOMNAS wilayah 4 Banten.",
     badge: "Juara III",
-    src: "/images/lomba-poster.jpg",
+    src: "/images/prestasi/lomba-poster.jpg",
   },
   {
     title: "Hackathon Nasional",
     description: "Kompetisi 24 jam membangun aplikasi inovatif.",
     badge: "Juara I",
-    src: "/images/lomba-hackathon.jpg",
+    src: "/images/prestasi/lomba-hackathon.jpg",
   },
   {
     title: "UI/UX Competition",
     description: "Kompetisi desain antarmuka tingkat nasional.",
     badge: "Finalis",
-    src: "/images/lomba-uiux.jpg",
+    src: "/images/prestasi/lomba-uiux.jpg",
   },
 ];

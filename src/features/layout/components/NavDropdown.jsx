@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { NavLink } from "react-router-dom"; // Impor NavLink
+import { NavLink } from "react-router-dom"; 
 import { ChevronDown } from "lucide-react";
 import { Poppins } from "../../global/components/Text";
 import { Eachable } from "../../global/components/Eachable";

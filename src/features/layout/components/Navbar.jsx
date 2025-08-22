@@ -20,6 +20,7 @@ const layananSubMenu = [
   { name: "Dosen", to: "/dosen" },
   { name: "Klinik", to: "/klinik" },
   { name: "Sertifikat", to: "/sertifikat" },
+  { name: "Pendaftaran", to: "/pendaftaran"}
 ];
 
 // eslint-disable-next-line react/prop-types
@@ -107,9 +108,13 @@ export default function Navbar() {
               variant="warning"
               size="lg"
               rounded="full"
+              target="_blank"
               onClick={() =>
-                (window.location.href =
-                  "https://kelompok-belajar-himti.netlify.app/")
+                window.open(
+                  "https://kelompok-belajar-himti.netlify.app/", 
+                  "_blank",
+                  "noopener,noreferrer" 
+              )
               }
             >
               Gabung Kelompok Belajar
@@ -183,8 +188,11 @@ export default function Navbar() {
                 size="lg"
                 rounded="full"
                 onClick={() =>
-                  (window.location.href =
-                    "https://kelompok-belajar-himti.netlify.app/")
+                window.open (
+                  "https://kelompok-belajar-himti.netlify.app/",
+                  "_blank",
+                  "noopener,noreferrer" 
+                )
                 }
               >
                 Gabung Kelompok Belajar

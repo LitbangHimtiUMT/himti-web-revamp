@@ -6,10 +6,10 @@ import { DraggableCard } from "./DraggableCard";
 
 // Data card angkatan
 const initialAngkatanData = [
-  { title: "Bootcamp Angkatan 2021", image: "/images/himti-bootcamp24.jpg" },
-  { title: "Bootcamp Angkatan 2022", image: "/images/himti-bootcamp23.jpg" },
-  { title: "Bootcamp Angkatan 2023", image: "/images/himti-bootcamp24.jpg" },
-  { title: "Bootcamp Angkatan 2024", image: "/images/himti-bootcamp23.jpg" },
+  { title: "Bootcamp Angkatan 2021", image: "/images/bootcamp/himti-bootcamp21.jpg" },
+  { title: "Bootcamp Angkatan 2022", image: "/images/bootcamp/himti-bootcamp22.jpg" },
+  { title: "Bootcamp Angkatan 2023", image: "/images/bootcamp/himti-bootcamp23.jpg" },
+  { title: "Bootcamp Angkatan 2024", image: "/images/bootcamp/himti-bootcamp24.jpg" },
 ];
 
 export default function AboutIntroSection() {
@@ -24,7 +24,7 @@ export default function AboutIntroSection() {
   };
 
   return (
-    <section className="bg-white py-20 px-4">
+    <section className="py-20 px-4">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -35,7 +35,7 @@ export default function AboutIntroSection() {
           <h1 className="text-3xl md:text-5xl font-bold">
             Our Story <Cover>About HIMTI</Cover>
           </h1>
-
+          
           <Poppins className="text-lg text-gray-700 max-w-xl">
             Himpunan Mahasiswa Teknik Informatika Universitas Muhammadiyah
             Tangerang (HIMTI-UMT) adalah wadah pengembangan diri mahasiswa, yang

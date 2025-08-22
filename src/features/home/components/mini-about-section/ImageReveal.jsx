@@ -6,22 +6,22 @@ import { Poppins } from "../../../global/components/Text";
 const visualData = [
   {
     key: 1,
-    url: "/images/himti-bootcamp.jpg",
+    url: "/images/bootcamp/himti-bootcamp21.jpg",
     label: "HIMTI Bootcamp 2021",
   },
   {
     key: 2,
-    url: "/images/himti-bootcamp.jpg",
+    url: "/images/bootcamp/himti-bootcamp22.jpg",
     label: "HIMTI Bootcamp 2022",
   },
   {
     key: 3,
-    url: "/images/himti-bootcamp23.jpg",
+    url: "/images/bootcamp/himti-bootcamp23.jpg",
     label: "HIMTI Bootcamp 2023",
   },
   {
     key: 4,
-    url: "/images/himti-bootcamp.jpg",
+    url: "/images/bootcamp/himti-bootcamp24.jpg",
     label: "HIMTI Bootcamp 2024",
   },
 ];

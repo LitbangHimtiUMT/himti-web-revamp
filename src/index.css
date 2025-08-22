@@ -15,3 +15,21 @@
     }
   }
 }
+
+/* Custom styling untuk Team Carousel */
+.team-carousel .slick-slide {
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.team-carousel .slick-slide:not(.slick-current) {
+  pointer-events: none; 
+}
+
+.team-carousel .slick-dots li button:before {
+  font-size: 12px;
+  color: #a0aec0;
+}
+
+.team-carousel .slick-dots li.slick-active button:before {
+  color: #2b6cb0;
+}

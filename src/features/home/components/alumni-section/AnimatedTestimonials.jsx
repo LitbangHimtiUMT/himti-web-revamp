@@ -108,7 +108,7 @@ export const TestimonialsCarousel = ({
               </div>
               <div className="relative z-20 mt-4">
                 <p className="text-md leading-snug text-gray-800 dark:text-gray-200 font-medium">
-                  "{item.title}"
+                  {item.title}
                 </p>
                 <div className="flex flex-col mt-2">
                   <span className="text-sm leading-none text-gray-600 dark:text-gray-400">
