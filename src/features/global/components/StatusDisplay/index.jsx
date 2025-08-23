@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import { Poppins } from "../Text";
+import { Poppins } from "../Text/index";
 import PropTypes from 'prop-types';
 
 export const StatusDisplay = ({ animationData, title, message, showCta = false }) => {
@@ -12,7 +12,7 @@ export const StatusDisplay = ({ animationData, title, message, showCta = false }
         {message}
       </Poppins>
       
-      <div className="w-full max-w-md">
+      <div className="w-full max-w-md mt-2">
         <Lottie animationData={animationData} loop={true} />
       </div>
     </div>
