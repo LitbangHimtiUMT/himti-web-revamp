@@ -2,6 +2,8 @@ import "./App.css";
 
 import { BrowserRouter, Route, Routes } from "react-router";
 import ScrollToTop from "./features/global/components/ScrollToTop/index";
+import SmoothCursor from "./features/global/components/SmoothCursor/index";
+
 import MainLayout from "./features/layout/view/MainLayout";
 import HomePage from "./features/home/view/HomePage";
 import AboutPage from "./features/about/view/AboutPage";
@@ -11,13 +13,19 @@ import CommingSoonPage from "./features/display/view/CommingSoonPage";
 function App() {
   return (
     <BrowserRouter>
-    <ScrollToTop />
+      <SmoothCursor
+        size={10}
+        rotateOnMove={true}
+        scaleOnClick={true}
+        glowEffect={true}
+      />
+      <ScrollToTop />
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/tentang" element={<AboutPage />} />
           <Route path="/sharing" element={<SharingPage />} />
-          
+
           {/* Only 3 Page */}
           <Route path="/artikel" element={<CommingSoonPage />} />
           <Route path="/tutorial" element={<CommingSoonPage />} />
@@ -26,7 +34,6 @@ function App() {
           <Route path="/klinik" element={<CommingSoonPage />} />
           <Route path="/sertifikat" element={<CommingSoonPage />} />
           <Route path="/pendaftaran" element={<CommingSoonPage />} />
-          <Route path="/baca" element={<CommingSoonPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

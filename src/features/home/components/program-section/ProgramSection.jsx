@@ -138,8 +138,8 @@ const programContent = [
 
 export default function ProgramSection() {
   return (
-    <section className="py-1 bg-white">
-      <div className="max-w-7xl mx-auto px-4 text-center mb-12">
+    <section className="py-1 bg-white animate-fade-in-up">
+      <div className="max-w-7xl mx-auto px-4 text-center mb-12 ">
         <Poppins className="text-white font-semibold bg-gradient-to-r from-[#4C76A3] to-[#203D5D] px-6 py-2 rounded-full px-4 py-1 tracking-wider uppercase text-sm mx-auto text-center w-fit">
           Program & Pembelajaran
         </Poppins>

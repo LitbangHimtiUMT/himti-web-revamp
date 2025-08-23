@@ -1,5 +1,5 @@
 import { Poppins } from "../../global/components/Text";
-import { Mail, Instagram, GithubIcon, LucideLinkedin } from "lucide-react";
+import { Mail, Instagram, YoutubeIcon, LucideLinkedin } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "../../../../public/images/himti-logo.png";
 
@@ -25,29 +25,33 @@ export default function ModernFooter() {
             </Poppins>
             <div className="flex space-x-4 pt-2">
               <a
-                href="#"
+                href="mailto:himti.umt11@gmail.com"
                 aria-label="gmail"
+                target="_blank"
                 className="text-gray-100 hover:text-blue-600 transition-colors"
               >
                 <Mail size={22} />
               </a>
               <a
-                href="#"
+                href="https://instagram.com/himtiumt/"
+                target="_blank"
                 aria-label="Instagram"
                 className="text-gray-100 hover:text-pink-500 transition-colors"
               >
                 <Instagram size={22} />
               </a>
               <a
-                href="#"
+                href="https://youtube.com/himtiumt"
+                target="_blank"
                 aria-label="YouTube"
                 className="text-gray-100 hover:text-red-600 transition-colors"
               >
-                <GithubIcon size={22} />
+                <YoutubeIcon size={22} />
               </a>
               <a
-                href="#"
+                href="https://likedin.com/himtiumt"
                 aria-label="LinkedIn"
+                target="_blank"
                 className="text-gray-100 hover:text-blue-700 transition-colors"
               >
                 <LucideLinkedin size={22} />

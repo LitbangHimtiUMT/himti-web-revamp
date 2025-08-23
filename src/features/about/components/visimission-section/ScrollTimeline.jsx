@@ -52,7 +52,7 @@ export const ScrollTimeline = ({ events, className }) => {
               <motion.div
                 className="absolute top-0 lg:top-1/2 -translate-y-1/2 left-6 lg:left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-slate-950 border-4 flex items-center justify-center"
                 animate={{
-                  borderColor: index <= activeIndex ? "#3b82f6" : "#475569",
+                  borderColor: index <= activeIndex ? "#3b82f6" : "#e1e3e7ff",
                   scale: index === activeIndex ? 1.2 : 1,
                 }}
                 transition={{ duration: 0.3 }}
@@ -68,11 +68,13 @@ export const ScrollTimeline = ({ events, className }) => {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className={cn(
                   "w-[calc(100%-4rem)] ml-auto lg:w-[calc(50%-40px)] p-6 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl shadow-lg",
-                  index % 2 === 0 ? "lg:mr-auto lg:ml-0" : "lg:ml-auto lg:mr-0"
+                  index % 2 === 0 ? "lg:mr-auto lg:ml-0" : "lg:ml-auto lg:mr-0",
                 )}
               >
                 <h3 className="text-xl font-bold text-white">{event.title}</h3>
-                <Poppins className="mt-2 text-slate-300">{event.description}</Poppins>
+                <Poppins className="mt-2 text-slate-300">
+                  {event.description}
+                </Poppins>
               </motion.div>
             </div>
           ))}

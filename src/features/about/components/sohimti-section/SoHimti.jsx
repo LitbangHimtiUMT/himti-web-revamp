@@ -13,7 +13,7 @@ export default function SoHimtiSection() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1, 
+        staggerChildren: 0.1,
       },
     },
   };
@@ -28,7 +28,9 @@ export default function SoHimtiSection() {
           Struktural HIMTI Periode 2024-2025
         </h2>
         <Poppins className="mt-4 max-w-3xl mx-auto text-lg text-gray-500">
-            Kami hadir untuk membentuk mahasiswa Teknik Informatika yang unggul di kelas dan berdaya di luar kelas. Mengasah kemampuan teknis, soft skill, sekaligus mempererat solidaritas antar anggota HIMTI UMT.
+          Kami hadir untuk membentuk mahasiswa Teknik Informatika yang unggul di
+          kelas dan berdaya di luar kelas. Mengasah kemampuan teknis, soft
+          skill, sekaligus mempererat solidaritas antar anggota HIMTI UMT.
         </Poppins>
       </div>
 
@@ -45,7 +47,7 @@ export default function SoHimtiSection() {
       <div className="mt-12 max-w-7xl mx-auto px-4">
         <AnimatePresence mode="wait">
           <motion.div
-            key={activeTab.value} 
+            key={activeTab.value}
             variants={containerVariants}
             initial="hidden"
             animate="visible"

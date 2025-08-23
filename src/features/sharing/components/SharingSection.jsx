@@ -3,7 +3,6 @@ import { Button } from "../../global/components/Button/index";
 import { BookOpen } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
-
 function SharingSection() {
   const courses = [
     {
@@ -11,13 +10,37 @@ function SharingSection() {
       desc: "Belajar dasar-dasar desain web, mulai dari HTML, CSS, hingga responsive design principles. Kuasai keterampilan penting untuk membuat website yang menarik, rapi, dan user-friendly.",
       duration: "4 Minggu",
       level: "Beginner",
-      images: ["/images/program/web.jpg", "/images/program/web2.jpg", "/images/program/web3.jpg"],
+      images: [
+        "/images/program/web.jpg",
+        "/images/program/web2.jpg",
+        "/images/program/web3.jpg",
+      ],
       curriculum: [
-        { id: "01", title: "Introduction to HTML", desc: "Pahami struktur dasar web dengan HTML." },
-        { id: "02", title: "Styling with CSS", desc: "Percantik tampilan website dengan CSS." },
-        { id: "03", title: "Responsive Design", desc: "Buat website yang nyaman di semua ukuran layar." },
-        { id: "04", title: "Design Principles", desc: "Pelajari prinsip desain agar website lebih profesional." },
-        { id: "05", title: "Building a Website", desc: "Terapkan semua ilmu untuk membuat website pertamamu." },
+        {
+          id: "01",
+          title: "Introduction to HTML",
+          desc: "Pahami struktur dasar web dengan HTML.",
+        },
+        {
+          id: "02",
+          title: "Styling with CSS",
+          desc: "Percantik tampilan website dengan CSS.",
+        },
+        {
+          id: "03",
+          title: "Responsive Design",
+          desc: "Buat website yang nyaman di semua ukuran layar.",
+        },
+        {
+          id: "04",
+          title: "Design Principles",
+          desc: "Pelajari prinsip desain agar website lebih profesional.",
+        },
+        {
+          id: "05",
+          title: "Building a Website",
+          desc: "Terapkan semua ilmu untuk membuat website pertamamu.",
+        },
       ],
     },
     {
@@ -25,13 +48,37 @@ function SharingSection() {
       desc: "Kuasai pengembangan aplikasi mobile cross-platform dengan Flutter untuk Android dan iOS. Belajar membangun aplikasi sekali tulis, bisa dijalankan di mana saja.",
       duration: "6 Minggu",
       level: "Intermediate",
-      images: ["/images/program/mobile.jpg", "/images/program/mobile2.jpg", "/images/program/mobile3.jpg"],
+      images: [
+        "/images/program/mobile.jpg",
+        "/images/program/mobile2.jpg",
+        "/images/program/mobile3.jpg",
+      ],
       curriculum: [
-        { id: "01", title: "Intro to Flutter", desc: "Kenalan dengan framework Flutter dan cara kerjanya." },
-        { id: "02", title: "UI Basics", desc: "Membuat tampilan aplikasi dengan widget Flutter." },
-        { id: "03", title: "State Management", desc: "Atur data aplikasi dengan state management sederhana." },
-        { id: "04", title: "API Integration", desc: "Hubungkan aplikasi dengan data dari internet." },
-        { id: "05", title: "Publish App", desc: "Deploy aplikasi ke Android & iOS Store." },
+        {
+          id: "01",
+          title: "Intro to Flutter",
+          desc: "Kenalan dengan framework Flutter dan cara kerjanya.",
+        },
+        {
+          id: "02",
+          title: "UI Basics",
+          desc: "Membuat tampilan aplikasi dengan widget Flutter.",
+        },
+        {
+          id: "03",
+          title: "State Management",
+          desc: "Atur data aplikasi dengan state management sederhana.",
+        },
+        {
+          id: "04",
+          title: "API Integration",
+          desc: "Hubungkan aplikasi dengan data dari internet.",
+        },
+        {
+          id: "05",
+          title: "Publish App",
+          desc: "Deploy aplikasi ke Android & iOS Store.",
+        },
       ],
     },
     {
@@ -39,13 +86,37 @@ function SharingSection() {
       desc: "Rancang antarmuka yang cantik dan fungsional. Belajar proses desain dari riset hingga prototipe dengan Figma.",
       duration: "3 Minggu",
       level: "Beginner",
-      images: ["/images/program/uiux.jpg", "/images/program/uiux2.jpg", "/images/program/uiux3.jpg"],
+      images: [
+        "/images/program/uiux.jpg",
+        "/images/program/uiux2.jpg",
+        "/images/program/uiux3.jpg",
+      ],
       curriculum: [
-        { id: "01", title: "Design Thinking", desc: "Pahami proses berpikir desain yang berfokus pada user." },
-        { id: "02", title: "Wireframing", desc: "Buat kerangka dasar aplikasi/website dengan wireframe." },
-        { id: "03", title: "Prototyping", desc: "Ubah wireframe menjadi prototipe interaktif di Figma." },
-        { id: "04", title: "User Testing", desc: "Pelajari cara menguji desain dengan user feedback." },
-        { id: "05", title: "Final Design", desc: "Hasilkan desain akhir yang siap diimplementasikan." },
+        {
+          id: "01",
+          title: "Design Thinking",
+          desc: "Pahami proses berpikir desain yang berfokus pada user.",
+        },
+        {
+          id: "02",
+          title: "Wireframing",
+          desc: "Buat kerangka dasar aplikasi/website dengan wireframe.",
+        },
+        {
+          id: "03",
+          title: "Prototyping",
+          desc: "Ubah wireframe menjadi prototipe interaktif di Figma.",
+        },
+        {
+          id: "04",
+          title: "User Testing",
+          desc: "Pelajari cara menguji desain dengan user feedback.",
+        },
+        {
+          id: "05",
+          title: "Final Design",
+          desc: "Hasilkan desain akhir yang siap diimplementasikan.",
+        },
       ],
     },
     {
@@ -53,19 +124,43 @@ function SharingSection() {
       desc: "Pelatihan mendalam seputar keamanan digital untuk meningkatkan pemahaman anggota HIMTI dalam menghadapi ancaman siber.",
       duration: "5 Minggu",
       level: "Intermediate",
-      images: ["/images/program/cyber.jpg", "/images/program/cyber2.jpg", "/images/program/cyber3.jpg"],
+      images: [
+        "/images/program/cyber.jpg",
+        "/images/program/cyber2.jpg",
+        "/images/program/cyber3.jpg",
+      ],
       curriculum: [
-        { id: "01", title: "Intro to Cyber Security", desc: "Kenali dasar-dasar keamanan digital." },
-        { id: "02", title: "Network Security", desc: "Pelajari cara mengamankan jaringan komputer." },
-        { id: "03", title: "Cryptography", desc: "Mengenal enkripsi dan teknik melindungi data." },
-        { id: "04", title: "Ethical Hacking", desc: "Praktik dasar penetration testing secara etis." },
-        { id: "05", title: "Incident Response", desc: "Cara menangani dan merespons serangan siber." },
+        {
+          id: "01",
+          title: "Intro to Cyber Security",
+          desc: "Kenali dasar-dasar keamanan digital.",
+        },
+        {
+          id: "02",
+          title: "Network Security",
+          desc: "Pelajari cara mengamankan jaringan komputer.",
+        },
+        {
+          id: "03",
+          title: "Cryptography",
+          desc: "Mengenal enkripsi dan teknik melindungi data.",
+        },
+        {
+          id: "04",
+          title: "Ethical Hacking",
+          desc: "Praktik dasar penetration testing secara etis.",
+        },
+        {
+          id: "05",
+          title: "Incident Response",
+          desc: "Cara menangani dan merespons serangan siber.",
+        },
       ],
     },
   ];
 
   return (
-    <div className="space-y-12 py-20 px-4">
+    <div className="space-y-12 py-20 px-4 animate-fade-in-up">
       {courses.map((course, idx) => (
         <div
           key={idx}
@@ -74,14 +169,18 @@ function SharingSection() {
           {/* Header */}
           <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
             <div>
-              <h2 className="text-2xl font-semibold text-gray-900">{course.title}</h2>
-              <p className="text-gray-600 mt-2 text-sm max-w-2xl">{course.desc}</p>
+              <h2 className="text-2xl font-semibold text-gray-900">
+                {course.title}
+              </h2>
+              <p className="text-gray-600 mt-2 text-sm max-w-2xl">
+                {course.desc}
+              </p>
             </div>
-             <div className="mt-8 flex justify-center sm:justify-start">
-              <NavLink to="/baca">
+            <div className="mt-8 flex justify-center sm:justify-start">
+              <NavLink to="/tutorial">
                 <Button variant="secondary" size="lg" rounded="full">
                   <div className="flex items-center gap-2 px-4">
-                    <span>Baca Selengkapnya</span>
+                    <span>Pelajari Modul</span>
                     <BookOpen size={18} />
                   </div>
                 </Button>

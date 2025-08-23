@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function MiniAboutTitle() {
   return (
-    <div className="relative px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 overflow-hidden">
+    <div className="relative px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 overflow-hidden animate-fade-in-up">
       {/* Grid konten */}
       <div className="relative grid gap-5 row-gap-8 lg:grid-cols-2 z-10">
         <div className="flex flex-col justify-center">

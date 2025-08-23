@@ -4,6 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Animasi Scroll Alumni Card */
 @layer utilities {
   .animate-scroll {
     animation: scroll var(--animation-duration, 40s)
@@ -14,15 +15,45 @@
       transform: translate(calc(-50% - 0.5rem));
     }
   }
+
+  @keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes fade-in-down {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+  .animate-fade-in-down {
+    animation: fade-in-down 0.8s ease-out forwards;
+  }
 }
 
 /* Custom styling untuk Team Carousel */
 .team-carousel .slick-slide {
-  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  transition:
+    transform 0.5s ease-in-out,
+    opacity 0.5s ease-in-out;
 }
 
 .team-carousel .slick-slide:not(.slick-current) {
-  pointer-events: none; 
+  pointer-events: none;
 }
 
 .team-carousel .slick-dots li button:before {

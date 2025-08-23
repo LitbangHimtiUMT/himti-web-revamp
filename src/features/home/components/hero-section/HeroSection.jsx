@@ -3,6 +3,7 @@ import { HeroHighlight, Highlight } from "./HeroHighlight";
 import { Button } from "../../../global/components/Button";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { Poppins } from "../../../global/components/Text/index";
+import { Link } from "react-router";
 
 export default function HeroSection() {
   return (
@@ -46,7 +47,7 @@ export default function HeroSection() {
             <div className="w-full sm:w-auto">
               <Button variant="primary" size="lg" rounded="full">
                 <div className="flex items-center justify-center gap-2 px-4">
-                  <span>Mulai Jelajahi</span>
+                  <Link to="/">Mulai Jelajahi</Link>
                   <ArrowRight size={18} />
                 </div>
               </Button>
@@ -56,7 +57,7 @@ export default function HeroSection() {
               <Button variant="secondary" size="lg" rounded="full">
                 <div className="flex items-center justify-center gap-2 px-4">
                   <BookOpen size={18} />
-                  <span>Lihat Kegiatan</span>
+                  <Link to="/sharing">Lihat Kegiatan</Link>
                 </div>
               </Button>
             </div>

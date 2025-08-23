@@ -1,7 +1,11 @@
 import { useRef, useState } from "react";
 import { cn } from "../../../../lib/utils";
 
-const SpotlightCard = ({ children, className = "", spotlightColor = "rgba(255, 255, 255, 0.25)" }) => {
+const SpotlightCard = ({
+  children,
+  className = "",
+  spotlightColor = "rgba(255, 255, 255, 0.25)",
+}) => {
   const divRef = useRef(null);
   const [isFocused, setIsFocused] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -41,8 +45,8 @@ const SpotlightCard = ({ children, className = "", spotlightColor = "rgba(255, 2
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={cn(
-        "relative rounded-3xl border border-neutral-800 bg-neutral-900 overflow-hidden p-8 h-full group",
-        className
+        "relative rounded-3xl bg-neutral-900 overflow-hidden p-8 h-full group cursor-pointer transition duration-300 hover:bg-gradient-to-r hover:from-[#f1c857] hover:to-[#2b6394] hover:text-white",
+        className,
       )}
     >
       <div
