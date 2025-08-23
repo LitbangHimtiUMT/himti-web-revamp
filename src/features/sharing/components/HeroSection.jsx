@@ -1,27 +1,24 @@
-import React from "react";
+import React from 'react'
 
 function HeroSection() {
   return (
-    <div>
-      <section className="bg-gray-50 py-12 border-b">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          {/* Left: Title */}
-          <h1 className="text-3xl md:text-4xl font-bold leading-snug">
-            HIMTI UMT
+    <section className="pt-24">
+      <div className="px-12 mx-auto max-w-7xl">
+        <div className="w-full mx-auto md:w-11/12 xl:w-9/12 text-center">
+          <h1 className="mb-8 text-4xl font-extrabold leading-none tracking-normal text-gray-900 md:text-6xl md:tracking-tight">
+            <span>Upgrade Skill</span>{" "}
+            <span className="block w-full py-2 text-transparent bg-clip-text leading-12 bg-gradient-to-r from-yellow-500 to-[#203D5D] shadow-[#466c8e] lg:inline">
+              Bangun Relasi
+            </span>{" "}
+            <span>Raih Masa Depan</span>
           </h1>
-
-          {/* Right: Description */}
-          <p className="text-gray-600 text-base leading-relaxed">
-            Himpunan Mahasiswa Teknik Informatika Universitas Muhammadiyah
-            Tangerang atau HIMTI - UMT adalah himpunan kampus yang tidak hanya
-            berfokus pada organisasi saja tetapi terhadap akademik juga, bahkan
-            tujuan utama HIMTI yaitu untuk meningkatkan nilai akademik Mahasiswa
-            Teknik Informatika Universitas Muhammadiyah Tangerang
+          <p className="px-0 mb-8 text-lg text-gray-600 md:text-xl lg:px-24">
+          Melalui pelatihan, diskusi, dan kolaborasi, HIMTI mendukung mahasiswa untuk siap bersaing di dunia akademik maupun industri.
           </p>
         </div>
-      </section>
-    </div>
-  );
+      </div>
+    </section>
+  )
 }
 
-export default HeroSection;
+export default HeroSection

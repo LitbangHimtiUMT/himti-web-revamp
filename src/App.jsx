@@ -24,8 +24,9 @@ function App() {
           <Route path="/agenda" element={<CommingSoonPage />} />
           <Route path="/dosen" element={<CommingSoonPage />} />
           <Route path="/klinik" element={<CommingSoonPage />} />
-          <Route path="/sertfikat" element={<CommingSoonPage />} />
+          <Route path="/sertifikat" element={<CommingSoonPage />} />
           <Route path="/pendaftaran" element={<CommingSoonPage />} />
+          <Route path="/baca" element={<CommingSoonPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
