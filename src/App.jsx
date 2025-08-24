@@ -13,12 +13,6 @@ import CommingSoonPage from "./features/display/view/CommingSoonPage";
 function App() {
   return (
     <BrowserRouter>
-      <SmoothCursor
-        size={10}
-        rotateOnMove={true}
-        scaleOnClick={true}
-        glowEffect={true}
-      />
       <ScrollToTop />
       <Routes>
         <Route element={<MainLayout />}>
