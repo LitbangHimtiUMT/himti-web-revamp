@@ -2,7 +2,6 @@ import "./App.css";
 
 import { BrowserRouter, Route, Routes } from "react-router";
 import ScrollToTop from "./features/global/components/ScrollToTop/index";
-import SmoothCursor from "./features/global/components/SmoothCursor/index";
 
 import MainLayout from "./features/layout/view/MainLayout";
 import HomePage from "./features/home/view/HomePage";
