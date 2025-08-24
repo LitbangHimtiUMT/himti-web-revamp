@@ -56,10 +56,12 @@ export const Badge = ({
         variantClasses[variant],
         sizeClasses[size],
         roundedClasses[rounded],
-        className
+        className,
       )}
     >
-      {icon && iconPosition === "left" && <span className="mr-1.5">{icon}</span>}
+      {icon && iconPosition === "left" && (
+        <span className="mr-1.5">{icon}</span>
+      )}
       <Poppins className={`text-[Poppins] ${sizeText[size]}`}>
         {children}
       </Poppins>

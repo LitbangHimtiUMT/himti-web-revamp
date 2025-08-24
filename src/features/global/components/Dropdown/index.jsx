@@ -110,8 +110,8 @@ export const DropdownRevamp = ({
                       prev.filter((item) =>
                         item.label
                           .toLowerCase()
-                          .includes(e.target.value.toLowerCase())
-                      )
+                          .includes(e.target.value.toLowerCase()),
+                      ),
                     );
                   }}
                 />
@@ -155,7 +155,7 @@ DropdownRevamp.propTypes = {
       label: PropTypes.string.isRequired,
       value: PropTypes.string.isRequired,
       disabled: PropTypes.bool,
-    })
+    }),
   ).isRequired,
   placeholder: PropTypes.string,
   defaultValue: PropTypes.shape({

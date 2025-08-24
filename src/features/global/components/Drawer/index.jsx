@@ -1,8 +1,7 @@
 import { createPortal } from "react-dom";
 import PropTypes from "prop-types";
 import { BiChevronLeft } from "react-icons/bi";
-import { Poppins } from "../Text";
-import { ConditionNode } from "../ConditionNode";
+import { Poppins } from "../Text/index";
 
 export const Drawer = ({
   onHide,
@@ -29,8 +28,8 @@ export const Drawer = ({
               show
                 ? "translate-x-0"
                 : position === "left"
-                ? "-translate-x-full"
-                : "translate-x-full"
+                  ? "-translate-x-full"
+                  : "translate-x-full"
             } overflow-auto`}
             onClick={(e) => e.stopPropagation()}
             style={style}
@@ -39,21 +38,21 @@ export const Drawer = ({
               className="flex items-center cursor-pointer"
               onClick={() => (close?.onClick ? close.onClick() : onHide())}
             >
-              <div className="ml-2 my-4 p-2 w-max h-max">
+              <div className="ml-2 my-4 p-2 w-max h-max ">
                 {close?.icon && withIcon ? (
                   close.icon
                 ) : withIcon ? (
                   <BiChevronLeft size={24} />
                 ) : null}
               </div>
-              <ConditionNode condition={!!close?.title}>
+              {!!close?.title && (
                 <Poppins className="text-sm">{close?.title || "Back"}</Poppins>
-              </ConditionNode>
+              )}
             </div>
             {children}
           </div>
         </div>,
-        document.body
+        document.body,
       )}
     </>
   );

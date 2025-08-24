@@ -1,1 +1,82 @@
 @import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Animasi Scroll Alumni Card */
+@layer utilities {
+  .animate-scroll {
+    animation: scroll var(--animation-duration, 90s)
+      var(--animation-direction, forwards) linear infinite;
+  }
+
+  .animate-aurora {
+    animation: aurora 20s linear infinite;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  .animate-fade-in-down {
+    animation: fade-in-down 0.8s ease-out forwards;
+  }
+
+  @keyframes scroll {
+    to {
+      transform: translate(calc(-50% - 0.5rem));
+    }
+  }
+
+  @keyframes aurora {
+    from {
+      background-position: 50% 50%, 50% 50%;
+    }
+    to {
+      background-position: 350% 50%, 350% 50%;
+    }
+  }
+
+  @keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in-down {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Custom styling untuk Team Carousel */
+.team-carousel .slick-slide {
+  transition:
+    transform 0.5s ease-in-out,
+    opacity 0.5s ease-in-out;
+}
+
+.team-carousel .slick-slide:not(.slick-current) {
+  pointer-events: none;
+}
+
+.team-carousel .slick-dots li button:before {
+  font-size: 12px;
+  color: #a0aec0;
+}
+
+.team-carousel .slick-dots li.slick-active button:before {
+  color: #2b6cb0;
+}
