@@ -64,7 +64,7 @@ BreadCrumb.propTypes = {
     PropTypes.shape({
       to: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-    })
+    }),
   ).isRequired,
   icon: PropTypes.node,
 };
