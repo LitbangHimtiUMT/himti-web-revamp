@@ -18,7 +18,8 @@ export default function HeroSection() {
           transition={{ duration: 0.5 }}
           className="text-3xl md:text-5xl font-bold text-center text-gray-800 dark:text-white leading-snug"
         >
-          Kuasai Teknologi Ubah , Asah Soft Skill, Perkuat Solidaritas <br /> Bersama{" "}
+          Kuasai Teknologi Ubahnya Dihapus , Asah Soft Skill, Perkuat
+          Solidaritas <br /> Bersama{" "}
           <Highlight className="text-black dark:text-white">
             <span className="text-white font-bold">HIMTI UMT</span>
           </Highlight>
