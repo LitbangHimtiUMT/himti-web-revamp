@@ -8,6 +8,7 @@ import HomePage from "./features/home/view/HomePage";
 import AboutPage from "./features/about/view/AboutPage";
 import SharingPage from "./features/sharing/views/SharingPage";
 import CommingSoonPage from "./features/display/view/CommingSoonPage";
+import Artikel from "./features/artikel/view/ArtikelPage";
 
 function App() {
   return (
