@@ -1,10 +1,14 @@
+import Callendar from "../components/CalendarAgenda";
 function AgendaPage() {
   return (
-    <h1>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus ipsam sunt
-      accusamus debitis modi accusantium pariatur expedita tempore. Incidunt
-      alias corrupti et ab possimus fugit eveniet ea nemo assumenda dignissimos?
-    </h1>
+    <>
+      <div
+        className="min-h-screen bg-base-200 flex items-center justify-center text-white"
+        style={{ backgroundColor: "#808080" }}
+      >
+        <Callendar />
+      </div>
+    </>
   );
 }
 export default AgendaPage;
