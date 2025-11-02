@@ -1,17 +1,19 @@
 import { TestimonialsCarousel } from "./AnimatedTestimonials";
-import { Poppins } from "../../../global/components/Text";
+import { Poppins } from "../../../../components/ui/Text";
+import avatarMan from "../../../../core/assets/images/avatar-man.jpg";
+import avatarWoman from "../../../../core/assets/images/avatar-woman.jpg";
 
 export default function AlumniSection() {
   return (
-    <section className="py-20 bg-white dark:bg-black dark:bg-dot-white/[0.2] relative">
+    <section className="py-20 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 text-center mb-12">
         <Poppins className="inline-block bg-yellow-400 text-black px-4 py-1 rounded-full text-sm font-semibold tracking-wider uppercase">
           Jejak Alumni
         </Poppins>
-        <h2 className="mt-2 text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+        <h2 className="mt-2 text-4xl md:text-5xl font-bold text-gray-900">
           Kisah Sukses dari Keluarga HIMTI
         </h2>
-        <Poppins className="mt-4 max-w-2xl mx-auto text-lg text-gray-500 dark:text-gray-300">
+        <Poppins className="mt-4 max-w-2xl mx-auto text-lg text-gray-500">
           Lihat bagaimana alumni kami berkarya dan berinovasi di berbagai
           perusahaan teknologi terkemuka di Indonesia.
         </Poppins>
@@ -34,7 +36,7 @@ const alumniData = [
     title: "Web Developer",
     company: "PT. Griya Fortuna Internasional",
     period: "Desember 2021 - Present",
-    image: "/images/avatar-woman.jpg",
+    image: avatarWoman,
     socials: { linkedin: "#", instagram: "#", github: "#" },
   },
   {
@@ -42,7 +44,7 @@ const alumniData = [
     title: "Android Developer",
     company: "PT. Healstation Indonesia",
     period: "Juni 2022 - Now",
-    image: "/images/avatar-man.jpg",
+    image: avatarMan,
     socials: { linkedin: "#", instagram: "#", github: "#" },
   },
   {
@@ -50,7 +52,7 @@ const alumniData = [
     title: "IT Security Operation Center Analyst",
     company: "PT. Mitra Integrasi Informatika",
     period: "",
-    image: "/images/avatar-man.jpg",
+    image: avatarMan,
     socials: { linkedin: "#", instagram: "#" },
   },
   {
@@ -58,7 +60,7 @@ const alumniData = [
     title: "Founder",
     company: "PT. Kelas Tambahan Nusantara",
     period: "",
-    image: "/images/avatar-man.jpg",
+    image: avatarMan,
     socials: { linkedin: "#", instagram: "#", github: "#" },
   },
   {
@@ -66,7 +68,7 @@ const alumniData = [
     title: "New Branch Delivery System Apps",
     company: "PT. Bank Mandiri Indonesia",
     period: "Oktober 2021 - Sekarang",
-    image: "/images/avatar-man.jpg",
+    image: avatarMan,
     socials: { linkedin: "#", instagram: "#", github: "#" },
   },
 ];

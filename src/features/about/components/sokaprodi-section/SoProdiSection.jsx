@@ -1,5 +1,9 @@
 import TeamCarousel from "./TeamCarousel";
-import { Poppins } from "../../../global/components/Text";
+import { Poppins } from "../../../../components/ui/Text";
+import kaProdi from "../../../../core/assets/images/soprodi/dosen-yani.jpg";
+import sekProdi from "../../../../core/assets/images/soprodi/dosen-dyas.jpg";
+import kaLab from "../../../../core/assets/images/soprodi/dosen-faridi.jpg";
+
 
 // Data dosen/kaprodi
 const teamMembers = [
@@ -7,21 +11,21 @@ const teamMembers = [
     id: "1",
     name: "Yani Sugiyani S.Kom, M.Kom, M.M",
     role: "Kaprodi Teknik Informatika",
-    image: "/images/soprodi/dosen-yani.jpg",
+    image: kaProdi,
     bio: "Dosen ahli di bidang rekayasa perangkat lunak dan manajemen proyek.",
   },
   {
     id: "2",
     name: "Dyas Yudi Priyanggodo S.Kom, M.Kom",
     role: "Sekprodi Teknik Infomatika",
-    image: "/images/soprodi/dosen-dyas.jpg",
+    image: sekProdi,
     bio: "Berfokus pada pengembangan Mobile Apps modern",
   },
   {
     id: "3",
     name: "Faridi S.Kom, M.Kom",
     role: "Ka. Labolatorium",
-    image: "/images/soprodi/dosen-faridi.jpg",
+    image: kaLab,
     bio: "Spesialis di bidang keamanan siber dan jaringan komputer.",
   },
 ];

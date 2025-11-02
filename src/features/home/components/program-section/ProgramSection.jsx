@@ -1,8 +1,12 @@
 import { StickyScroll } from "./StickyScrollReveal";
-import { Poppins } from "../../../global/components/Text";
-import { Button } from "../../../global/components/Button";
+import { Poppins } from "../../../../components/ui/Text";
+import { Button } from "../../../../components/ui/Button";
 import { NavLink } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import webPhoto from "../../../../core/assets/images/web.jpg";
+import mobilePhoto from "../../../../core/assets/images/mobile.jpg";
+import uiuxPhoto from "../../../../core/assets/images/uiux.jpg";
+import cyberPhoto from "../../../../core/assets/images/cyber.jpg";
 
 // Data untuk section
 const programContent = [
@@ -15,7 +19,7 @@ const programContent = [
           modern seperti React.js dan TailwindCSS.
         </p>
         <div className="mt-4">
-          <NavLink to="/sharing">
+          <NavLink to="/materi">
             <Button variant="secondary" size="md" rounded="full">
               <div className="flex items-center gap-2 px-2">
                 <span className="whitespace-nowrap">Pelajari Lebih Lanjut</span>
@@ -29,11 +33,12 @@ const programContent = [
     content: (
       <div className="h-full w-full flex items-center justify-center">
         <img
-          src="/images/program/web.jpg"
+          src={webPhoto}
           width={300}
           height={300}
           className="h-full w-full object-cover"
           alt="Web Development thumbnail"
+          loading="lazy"
         />
       </div>
     ),
@@ -47,7 +52,7 @@ const programContent = [
           untuk Android dan iOS.
         </p>
         <div className="mt-4">
-          <NavLink to="/sharing">
+          <NavLink to="/materi">
             <Button variant="secondary" size="md" rounded="full">
               <div className="flex items-center gap-2 px-2">
                 <span className="whitespace-nowrap">Pelajari Lebih Lanjut</span>
@@ -61,11 +66,12 @@ const programContent = [
     content: (
       <div className="h-full w-full flex items-center justify-center">
         <img
-          src="/images/program/mobile.jpg"
+          src={mobilePhoto}
           width={300}
           height={300}
           className="h-full w-full object-cover"
           alt="Mobile Development thumbnail"
+          loading="lazy"
         />
       </div>
     ),
@@ -79,7 +85,7 @@ const programContent = [
           dari riset hingga prototipe dengan Figma.
         </p>
         <div className="mt-4">
-          <NavLink to="/sharing">
+          <NavLink to="/materi">
             <Button variant="secondary" size="md" rounded="full">
               <div className="flex items-center gap-2 px-2">
                 <span className="whitespace-nowrap">Pelajari Lebih Lanjut</span>
@@ -93,11 +99,12 @@ const programContent = [
     content: (
       <div className="h-full w-full flex items-center justify-center">
         <img
-          src="/images/program/uiux.jpg"
+          src={uiuxPhoto}
           width={300}
           height={300}
           className="h-full w-full object-cover"
           alt="UI/UX Design thumbnail"
+          loading="lazy"
         />
       </div>
     ),
@@ -111,7 +118,7 @@ const programContent = [
           pemahaman anggota HIMTI dalam menghadapi ancaman siber.
         </p>
         <div className="mt-4">
-          <NavLink to="/sharing">
+          <NavLink to="/materi">
             <Button variant="secondary" size="md" rounded="full">
               <div className="flex items-center gap-2 px-2">
                 <span className="whitespace-nowrap">Pelajari Lebih Lanjut</span>
@@ -125,11 +132,12 @@ const programContent = [
     content: (
       <div className="h-full w-full flex items-center justify-center">
         <img
-          src="/images/program/cyber.jpg"
+          src={cyberPhoto}
           width={300}
           height={300}
           className="h-full w-full object-cover"
           alt="Cyber Security thumbnail"
+          loading="lazy"
         />
       </div>
     ),

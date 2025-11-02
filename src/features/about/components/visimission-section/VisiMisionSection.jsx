@@ -1,4 +1,4 @@
-import { Poppins } from "../../../global/components/Text";
+import { Poppins } from "../../../../components/ui/Text";
 import { ScrollTimeline } from "./ScrollTimeline";
 import {
   Target,

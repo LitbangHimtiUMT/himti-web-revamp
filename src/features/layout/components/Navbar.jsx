@@ -1,18 +1,20 @@
 import { useState } from "react";
-import { Poppins } from "../../global/components/Text";
-import { Button } from "../../global/components/Button";
-import { Eachable } from "../../global/components/Eachable";
+import { Poppins } from "../../../components/ui/Text";
+import { Button } from "../../../components/ui/Button";
+import { Eachable } from "../../../lib/Eachable";
 import { NavDropdown } from "./NavDropdown";
 import { NavLink } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
+import himtiLogo  from "../../../core/assets/images/himti-logo.png";
 
 const navLinks = [
   { name: "Home", to: "/" },
   { name: "Tentang", to: "/tentang" },
-  { name: "Artikel", to: "/artikel" },
+  { name: "Anggota", to: "/angkatan"},
+  // { name: "Artikel", to: "/artikel" },
 ];
 const kegiatanSubMenu = [
-  { name: "Sharing", to: "/sharing" },
+  { name: "Materi", to: "/materi" },
   { name: "Tutorial", to: "/tutorial" },
   { name: "Agenda", to: "/agenda" },
 ];
@@ -77,7 +79,7 @@ export default function Navbar() {
       <div className="relative max-w-4xl mx-auto bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-lg">
         <div className="flex items-center justify-between px-6 py-3">
           <div className="flex items-center gap-2">
-            <img src="/images/himti-logo.png" alt="HIMTI" className="h-10" />
+            <img src={himtiLogo} alt="HIMTI" className="h-10" />
             <Poppins className="font-bold text-gray-600 md:hidden">
               HIMTI UMT
             </Poppins>

@@ -79,7 +79,7 @@ export const TestimonialsCarousel = ({
       >
         {items.map((item, idx) => (
           <li
-            className="w-[350px] max-w-full relative rounded-2xl border border-b-0 flex-shrink-0 border-slate-200 dark:border-slate-700 px-8 py-6 md:w-[450px]"
+            className="w-[350px] max-w-full relative rounded-2xl border border-b-0 flex-shrink-0 border-slate-200  px-8 py-6 md:w-[450px]"
             style={{
               background:
                 "linear-gradient(180deg, var(--slate-50), var(--slate-1900))",
@@ -95,23 +95,22 @@ export const TestimonialsCarousel = ({
                     src={item.image}
                     alt={item.name}
                     className="w-14 h-14 rounded-full object-cover"
+                    loading="lazy"
                   />
                 </div>
                 <div className="ml-4">
-                  <div className="text-lg font-bold text-gray-900 dark:text-white">
+                  <div className="text-lg font-bold text-gray-900">
                     {item.name}
                   </div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">
-                    {item.degree}
-                  </div>
+                  <div className="text-sm text-gray-600">{item.degree}</div>
                 </div>
               </div>
               <div className="relative z-20 mt-4">
-                <p className="text-md leading-snug text-gray-800 dark:text-gray-200 font-medium">
+                <p className="text-md leading-snug text-gray-800 font-medium">
                   {item.title}
                 </p>
                 <div className="flex flex-col mt-2">
-                  <span className="text-sm leading-none text-gray-600 dark:text-gray-400">
+                  <span className="text-sm leading-none text-gray-600">
                     {item.company}
                   </span>
                   <span className="text-xs leading-none text-gray-500 mt-1">
@@ -142,7 +141,7 @@ export const TestimonialsCarousel = ({
                   <a
                     href={item.socials.github}
                     aria-label="GitHub"
-                    className="text-gray-400 hover:text-gray-800 dark:hover:text-white transition-colors"
+                    className="text-gray-400 hover:text-gray-800 transition-colors"
                   >
                     <Github size={20} />
                   </a>

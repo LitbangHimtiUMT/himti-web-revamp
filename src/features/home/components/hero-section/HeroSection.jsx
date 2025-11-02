@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { HeroHighlight, Highlight } from "./HeroHighlight";
-import { Button } from "../../../global/components/Button";
+import { Button } from "../../../../components/ui/Button";
 import { ArrowRight, BookOpen } from "lucide-react";
-import { Poppins } from "../../../global/components/Text/index";
-import { Link } from "react-router";
+import { Poppins } from "../../../../components/ui/Text";
+import { NavLink } from "react-router";
 
 export default function HeroSection() {
   return (
@@ -16,10 +16,10 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-3xl md:text-5xl font-bold text-center text-gray-800 dark:text-white leading-snug"
+          className="text-3xl md:text-5xl font-bold text-center text-gray-800 leading-snug"
         >
           Kuasai Teknologi, Asah Soft Skill, Perkuat Solidaritas <br /> Bersama{" "}
-          <Highlight className="text-black dark:text-white">
+          <Highlight className="text-black">
             <span className="text-white font-bold">HIMTI UMT</span>
           </Highlight>
         </motion.h1>
@@ -28,7 +28,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-6 text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-4xl text-center"
+          className="mt-6 text-lg md:text-xl text-gray-600 max-w-4xl text-center"
         >
           <Poppins>
             Dukung perjalananmu menuju profesional teknologi dengan solidaritas,
@@ -45,21 +45,25 @@ export default function HeroSection() {
         >
           <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-xs sm:max-w-none mx-auto">
             <div className="w-full sm:w-auto">
+              <NavLink to="/#mini-about">
               <Button variant="primary" size="lg" rounded="full">
                 <div className="flex items-center justify-center gap-2 px-4">
-                  <Link to="/">Mulai Jelajahi</Link>
+                  <span>Mulai Jelajahi</span>
                   <ArrowRight size={18} />
                 </div>
               </Button>
+              </NavLink>
             </div>
 
             <div className="w-full sm:w-auto">
+              <NavLink to="/agenda" >
               <Button variant="secondary" size="lg" rounded="full">
                 <div className="flex items-center justify-center gap-2 px-4">
                   <BookOpen size={18} />
-                  <Link to="/sharing">Lihat Kegiatan</Link>
+                  <span to="/agenda">Lihat Kegiatan</span>
                 </div>
               </Button>
+              </NavLink>
             </div>
           </div>
         </motion.div>

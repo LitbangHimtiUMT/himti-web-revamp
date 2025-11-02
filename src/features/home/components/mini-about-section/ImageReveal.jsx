@@ -1,28 +1,34 @@
 import { useState, useEffect } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { MoveUpRight as ArrowIcon } from "lucide-react";
-import { Poppins } from "../../../global/components/Text";
+import { Poppins } from "../../../../components/ui/Text";
+import { Link } from "react-router-dom";
+import himti21 from "../../../../core/assets/images/bootcamp/himti-bootcamp21.jpg";
+import himti22 from "../../../../core/assets/images/bootcamp/himti-bootcamp22.jpg";
+import himti23 from "../../../../core/assets/images/bootcamp/himti-bootcamp23.jpg";
+import himti24 from "../../../../core/assets/images/bootcamp/himti-bootcamp24.jpg";
 
+// Updated data to be more relevant
 const visualData = [
   {
     key: 1,
-    url: "/images/bootcamp/himti-bootcamp21.jpg",
-    label: "HIMTI Bootcamp 2021",
+    url: himti21,
+    label: "Galeri Angkatan 2021",
   },
   {
     key: 2,
-    url: "/images/bootcamp/himti-bootcamp22.jpg",
-    label: "HIMTI Bootcamp 2022",
+    url: himti22,
+    label: "Galeri Angkatan 2022",
   },
   {
     key: 3,
-    url: "/images/bootcamp/himti-bootcamp23.jpg",
-    label: "HIMTI Bootcamp 2023",
+    url: himti23,
+    label: "Galeri Angkatan 2023",
   },
   {
     key: 4,
-    url: "/images/bootcamp/himti-bootcamp24.jpg",
-    label: "HIMTI Bootcamp 2024",
+    url: himti24,
+    label: "Galeri Angkatan 2024",
   },
 ];
 
@@ -64,7 +70,8 @@ export default function ImageReveal() {
       onMouseLeave={onHoverDeactivate}
     >
       {visualData.map((item) => (
-        <div
+        <Link
+          to="/tentang#angkatan-gallery" // Points to the About page and a specific section
           key={item.key}
           className="p-2 cursor-pointer relative sm:flex items-center justify-between"
           onMouseEnter={() => onHoverActivate(item)}
@@ -74,6 +81,7 @@ export default function ImageReveal() {
               src={item.url}
               className="sm:w-32 sm:h-20 w-full h-52 object-cover rounded-md"
               alt={item.label}
+              loading="lazy"
             />
           )}
 
@@ -99,14 +107,14 @@ export default function ImageReveal() {
 
           {/* underline animasi */}
           <div
-            className={`h-[2px] dark:bg-white bg-black absolute bottom-0 left-0 transition-all duration-300 ease-linear ${
+            className={`h-[2px] bg-black absolute bottom-0 left-0 transition-all duration-300 ease-linear ${
               focusedItem?.key === item.key ? "w-full" : "w-0"
             }`}
           />
-        </div>
+        </Link>
       ))}
 
-      {/* gambar preview  */}
+      {/* gambar preview */}
       {isLargeScreen && focusedItem && (
         <motion.img
           src={focusedItem.url}

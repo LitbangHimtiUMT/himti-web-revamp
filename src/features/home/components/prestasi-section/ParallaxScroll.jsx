@@ -2,79 +2,84 @@
 import { useScroll, useTransform, motion } from "framer-motion";
 import { useRef } from "react";
 import { cn } from "../../../../lib/utils";
-import { Poppins } from "../../../global/components/Text";
-import { ArrowUpRight } from "lucide-react";
+import { Poppins } from "../../../../components/ui/Text";
 
-// Komponen Card dalam grid
+// Card component 
 const Card = ({ item }) => {
   return (
-    <div className="h-80 w-full relative rounded-lg overflow-hidden group">
+    <div className="h-96 w-full relative rounded-lg overflow-hidden group block">
+      {/* Gambar dan Gradient Overlay */}
       <img
         src={item.src}
         className="h-full w-full object-cover object-center absolute inset-0 group-hover:scale-105 transition-transform duration-500 ease-in-out"
         alt={item.title}
+        loading="lazy"
       />
-
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
-      <div className="absolute bottom-0 left-0 p-6 text-white flex flex-col justify-end h-full">
-        <span className="inline-block w-17 bg-yellow-500 text-black px-3 py-1 text-xs font-semibold rounded-full mb-2">
-          {item.badge}
-        </span>
-        <h3 className="text-xl font-bold">{item.title}</h3>
-        <Poppins className="text-sm mt-1 text-gray-300">
-          {item.description}
-        </Poppins>
-        <a
-          href="#"
-          className="flex items-center gap-1 mt-4 text-yellow-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        >
-          Read More <ArrowUpRight size={16} />
-        </a>
+      {/* Konten Teks */}
+       <div className="absolute bottom-0 left-0 p-6 text-white flex flex-col justify-end h-full w-full">
+        <div>
+          {/* Garis Pemisah dengan Animasi */}
+          <div className="relative w-full mb-3">
+            <div className="h-1 rounded-full w-1/4 bg-yellow-400 group-hover:w-full transition-all duration-500 ease-in-out"></div>
+          </div>
+          <h3 className="text-xl font-bold mb-1">{item.title}</h3>
+          <Poppins className="text-sm text-gray-300 line-clamp-3">
+            {item.description}
+          </Poppins>
+        </div>
       </div>
     </div>
   );
 };
+      
 
 export const ParallaxScroll = ({ items, className }) => {
   const gridRef = useRef(null);
   const { scrollYProgress } = useScroll({
     container: gridRef,
-    offset: ["start start", "end start"],
+    offset: ["start start", "end start"], // Animate from the start to the end of the container
   });
 
-  const translateFirst = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const translateSecond = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const translateThird = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  // Transform untuk kolom kiri (bergerak ke atas)
+  const translateUp = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  // Transform untuk kolom kanan (bergerak ke bawah)
+  const translateDown = useTransform(scrollYProgress, [0, 1], [0, 150]);
 
-  const third = Math.ceil(items.length / 3);
-  const firstPart = items.slice(0, third);
-  const secondPart = items.slice(third, 2 * third);
-  const thirdPart = items.slice(2 * third);
+  // Membagi item menjadi dua kolom berdasarkan index (genap/ganjil)
+  const leftColumnItems = items.filter((_, index) => index % 2 === 0);
+  const rightColumnItems = items.filter((_, index) => index % 2 !== 0);
 
   return (
+    // Container dengan tinggi tetap dan scrollable, ini adalah kunci efek parallax
     <div
-      className={cn("h-[40rem] items-start overflow-y-auto w-full", className)}
       ref={gridRef}
+      className={cn("h-[45rem] w-full overflow-y-auto", className)}
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start max-w-5xl mx-auto gap-10 py-40 px-10">
-        <div className="grid gap-10">
-          {firstPart.map((item, idx) => (
-            <motion.div style={{ y: translateFirst }} key={"grid-1" + idx}>
+      {/* Padding di dalam agar ada ruang untuk scroll */}
+      <div
+        className="grid grid-cols-1 md:grid-cols-2 items-start max-w-5xl mx-auto gap-8 px-4 py-20"
+      >
+        {/* Kolom Kiri */}
+        <div className="grid gap-8">
+          {leftColumnItems.map((item, idx) => (
+            <motion.div
+              style={{ y: translateUp }} // Terapkan animasi bergerak ke atas
+              key={`prestasi-left-${idx}`}
+            >
               <Card item={item} />
             </motion.div>
           ))}
         </div>
-        <div className="grid gap-10">
-          {secondPart.map((item, idx) => (
-            <motion.div style={{ y: translateSecond }} key={"grid-2" + idx}>
-              <Card item={item} />
-            </motion.div>
-          ))}
-        </div>
-        <div className="grid gap-10">
-          {thirdPart.map((item, idx) => (
-            <motion.div style={{ y: translateThird }} key={"grid-3" + idx}>
+
+        {/* Kolom Kanan */}
+        <div className="grid gap-8">
+          {rightColumnItems.map((item, idx) => (
+            <motion.div
+              style={{ y: translateDown }} // Terapkan animasi bergerak ke bawah
+              key={`prestasi-right-${idx}`}
+            >
               <Card item={item} />
             </motion.div>
           ))}

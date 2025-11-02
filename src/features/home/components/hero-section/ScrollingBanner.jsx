@@ -32,7 +32,7 @@ export const ScrollingBanner = ({
     if (containerRef.current) {
       containerRef.current.style.setProperty(
         "--animation-direction",
-        direction === "left" ? "forwards" : "reverse"
+        direction === "left" ? "forwards" : "reverse",
       );
     }
   };
@@ -52,24 +52,18 @@ export const ScrollingBanner = ({
   return (
     <div
       ref={containerRef}
-      className={cn(
-        "scroller relative z-20 w-full overflow-hidden",
-        className
-      )}
+      className={cn("scroller relative z-20 w-full overflow-hidden", className)}
     >
       <ul
         ref={scrollerRef}
         className={cn(
           "flex min-w-full shrink-0 gap-16 py-4 w-max flex-nowrap",
           start && "animate-scroll",
-          pauseOnHover && "hover:[animation-play-state:paused]"
+          pauseOnHover && "hover:[animation-play-state:paused]",
         )}
       >
         {items.map((item, idx) => (
-          <li
-            className="flex items-center space-x-16"
-            key={idx}
-          >
+          <li className="flex items-center space-x-16" key={idx}>
             {item}
           </li>
         ))}

@@ -1,7 +1,7 @@
 import RotatingText from "./RotatingText";
 import ImageReveal from "./ImageReveal";
-import { Poppins } from "../../../global/components/Text/index";
-import { Button } from "../../../global/components/Button";
+import { Poppins } from "../../../../components/ui/Text";
+import { Button } from "../../../../components/ui/Button";
 import { NavLink } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
@@ -12,7 +12,7 @@ export default function MiniAboutTitle() {
       <div className="relative grid gap-5 row-gap-8 lg:grid-cols-2 z-10">
         <div className="flex flex-col justify-center">
           <div className="max-w-xl mb-6">
-            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl mb-4 flex flex-wrap items-center justify-center sm:justify-start gap-2">
+            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-4 flex flex-wrap items-center justify-center sm:justify-start gap-2">
               <Poppins className="text-gray-900">HIMTI</Poppins>
               <RotatingText
                 texts={["Berkarya", "Berinovasi", "Bisa Bisa Jaya!"]}

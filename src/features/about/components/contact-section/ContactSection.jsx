@@ -1,5 +1,5 @@
-import { Poppins } from "../../../global/components/Text";
-import { Button } from "../../../global/components/Button";
+import { Poppins } from "../../../../components/ui/Text";
+import { Button } from "../../../../components/ui/Button";
 import { motion } from "framer-motion";
 import { Mail, Instagram, MessageSquare } from "lucide-react";
 import SpotlightCard from "./SpotlightCard";

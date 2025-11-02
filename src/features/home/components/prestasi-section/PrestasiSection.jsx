@@ -1,7 +1,53 @@
+import { useState, useEffect } from 'react';
+import { getPrestasi } from '../../api/prestasiService';
 import { ParallaxScroll } from "./ParallaxScroll";
-import { Poppins } from "../../../global/components/Text";
+import { Poppins } from "../../../../components/ui/Text";
+import Shimmer from '../../../../components/Shimmer';
+import { StatusError } from '../../../../components/StatusDisplay';
 
 export default function PrestasiSection() {
+  const [prestasiItems, setPrestasiItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchAndFormatPrestasi = async () => {
+      try {
+        const result = await getPrestasi();
+        // Transformasi data dari API ke format yang dibutuhkan ParallaxScroll
+        const formattedData = result.data.map(item => ({
+          title: item.title,
+          description: item.description,
+          badge: item.badge,
+          src: item.image, 
+        }));
+        setPrestasiItems(formattedData);
+      } catch (err) {
+        setError("Gagal memuat jejak prestasi kami.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAndFormatPrestasi();
+  }, []);
+
+  if (loading) {
+    // Menampilkan shimmer effect saat data sedang dimuat
+    return (
+        <section className="bg-white py-10">
+            <div className="max-w-7xl mx-auto">
+                <Shimmer type="parallax" />
+            </div>
+        </section>
+    );
+  }
+
+  if (error) {
+    // Menampilkan pesan error jika API gagal
+    return <StatusError message={error} />;
+  }
+
   return (
     <section className="bg-white">
       <div className="max-w-7xl mx-auto px-4 py-10 text-center animate-fade-in-up">
@@ -17,49 +63,10 @@ export default function PrestasiSection() {
         </Poppins>
       </div>
 
+      {/* Komponen ParallaxScroll sekarang menerima data dari API */}
       <ParallaxScroll items={prestasiItems} />
 
       <div className="text-center pb-20" />
     </section>
   );
 }
-
-const prestasiItems = [
-  {
-    title: "Lomba Startup Inovation",
-    description:
-      "Diadakan oleh PERMIKOMNAS Wilayah IV Banten (10-11 April 2021).",
-    badge: "Juara II",
-    src: "/images/prestasi/lomba-startup.jpg",
-  },
-  {
-    title: "Lomba Short Movie",
-    description: "Diadakan oleh BEM Global Institute (21 April 2021).",
-    badge: "Juara II",
-    src: "/images/prestasi/lomba-shortmovie.jpg",
-  },
-  {
-    title: "Lomba Design Grafis",
-    description: "Diadakan oleh Universitas Darma Persada, Jakarta Timur.",
-    badge: "Juara II",
-    src: "/images/prestasi/lomba-design.jpg",
-  },
-  {
-    title: "Lomba Poster",
-    description: "Diadakan oleh PERMIKOMNAS wilayah 4 Banten.",
-    badge: "Juara III",
-    src: "/images/prestasi/lomba-poster.jpg",
-  },
-  {
-    title: "Hackathon Nasional",
-    description: "Kompetisi 24 jam membangun aplikasi inovatif.",
-    badge: "Juara I",
-    src: "/images/prestasi/lomba-hackathon.jpg",
-  },
-  {
-    title: "UI/UX Competition",
-    description: "Kompetisi desain antarmuka tingkat nasional.",
-    badge: "Finalis",
-    src: "/images/prestasi/lomba-uiux.jpg",
-  },
-];
