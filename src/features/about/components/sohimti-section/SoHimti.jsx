@@ -19,7 +19,7 @@ export default function SoHimtiSection() {
           HIMTI Leadership
         </Poppins>
         <h2 className="mt-2 text-4xl md:text-5xl font-bold text-gray-900">
-          Struktural HIMTI Periode 2024-2025
+          Struktural HIMTI Periode 2025-2026  
         </h2>
         <Poppins className="mt-4 max-w-3xl mx-auto text-lg text-gray-500">
           Kami hadir untuk membentuk mahasiswa Teknik Informatika yang unggul

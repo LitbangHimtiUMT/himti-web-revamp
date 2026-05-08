@@ -1,48 +1,65 @@
-import logoHifest from "../../../../core/assets/images/hifest-logo.png";
+import logoHimti from "/images/himti-logo.png";
 import { Poppins } from "../../../../components/ui/Text";
 import { ScrollingBanner } from "./ScrollingBanner";
-import { Tv, Palette, Trophy, Gamepad2, ArrowRight } from "lucide-react";
+import {
+  GraduationCap,
+  Users,
+  Laptop,
+  Trophy,
+  ArrowRight,
+} from "lucide-react";
 import { Button } from "../../../../components/ui/Button";
 import { Link } from "react-router";
 
 export default function BannerSection() {
   const bannerContent = (
     <div className="flex items-center gap-x-8 text-white whitespace-nowrap">
-      <div className="flex items-center gap-2">
+      {/* Logo & Heading */}
+      <div className="flex items-center gap-3">
         <div className="bg-white rounded-full p-1 flex items-center justify-center">
           <img
-            src={ logoHifest} 
-            alt="hifest-logo"
+            src={logoHimti}
+            alt="himti-logo"
             className="h-9 w-9 object-contain"
             loading="lazy"
           />
         </div>
-        <Poppins className="font-bold text-md">HIFEST 2025</Poppins>
+
+        <Poppins className="font-bold text-md">
+          HIMTI UNIVERSITAS MUHAMMADIYAH TANGERANG
+        </Poppins>
 
         <Poppins className="text-sm leading-6 opacity-80">
-          Segera hadir di Universitas Muhammadiyah Tangerang. Jangan sampai
-          ketinggalan!
+          Wadah pengembangan akademik, teknologi, inovasi, dan kolaborasi
+          mahasiswa Teknik Informatika.
         </Poppins>
       </div>
 
+      {/* Menu Banner */}
       <div className="flex items-center gap-x-6 text-sm">
         <span className="flex items-center gap-2">
-          <Tv size={16} /> Seminar
+          <GraduationCap size={16} />
+          Akademik
         </span>
+
         <span className="flex items-center gap-2">
-          <Palette size={16} /> Lomba UI/UX
+          <Laptop size={16} />
+          Teknologi
         </span>
+
+        <span className="flex items-center gap-2">
+          <Users size={16} />
+          Organisasi
+        </span>
+
         <span className="flex items-center gap-2">
           <Trophy size={16} />
-          Lomba Futsal
+          Prestasi
         </span>
-        <span className="flex items-center gap-2">
-          <Gamepad2 size={16} />
-          Lomba Mobile Legends
-        </span>
+
         <Button variant="secondary" size="sm" rounded="full">
           <div className="flex items-center gap-2 px-1">
-            <Link to="/pendaftaran">Daftar Sekarang</Link>
+            <Link to="/tentang-kami">Jelajahi HIMTI</Link>
             <ArrowRight size={18} />
           </div>
         </Button>

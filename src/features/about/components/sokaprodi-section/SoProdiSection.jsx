@@ -1,7 +1,7 @@
 import TeamCarousel from "./TeamCarousel";
 import { Poppins } from "../../../../components/ui/Text";
-import kaProdi from "../../../../core/assets/images/soprodi/dosen-yani.jpg";
-import sekProdi from "../../../../core/assets/images/soprodi/dosen-dyas.jpg";
+import kaProdi from "../../../../core/assets/images/soprodi/dosen-arief.jpg";
+import sekProdi from "../../../../core/assets/images/soprodi/dosen-sukri.jpg";
 import kaLab from "../../../../core/assets/images/soprodi/dosen-faridi.jpg";
 
 
@@ -9,24 +9,24 @@ import kaLab from "../../../../core/assets/images/soprodi/dosen-faridi.jpg";
 const teamMembers = [
   {
     id: "1",
-    name: "Yani Sugiyani S.Kom, M.Kom, M.M",
-    role: "Kaprodi Teknik Informatika",
+    name: "Arief Herdiansah, M.TI",
+    role: "Ketua Prodi Teknik Informatika",
     image: kaProdi,
-    bio: "Dosen ahli di bidang rekayasa perangkat lunak dan manajemen proyek.",
+    bio: "Memimpin pengembangan akademik Program Studi Teknik Informatika periode 2026 – 2030 dengan fokus pada inovasi dan kualitas pendidikan.",
   },
   {
     id: "2",
-    name: "Dyas Yudi Priyanggodo S.Kom, M.Kom",
-    role: "Sekprodi Teknik Infomatika",
+    name: "Sukri Harli, M.TI",
+    role: "Sekretaris Prodi Teknik Informatika",
     image: sekProdi,
-    bio: "Berfokus pada pengembangan Mobile Apps modern",
+    bio: "Berperan dalam pengelolaan administrasi akademik dan pengembangan program kerja Prodi Teknik Informatika.",
   },
   {
     id: "3",
-    name: "Faridi S.Kom, M.Kom",
-    role: "Ka. Labolatorium",
+    name: "Faridi, M.Kom",
+    role: "Kepala Laboratorium Komputer",
     image: kaLab,
-    bio: "Spesialis di bidang keamanan siber dan jaringan komputer.",
+    bio: "Berfokus pada pengembangan laboratorium komputer, praktikum, serta penguatan kompetensi teknologi mahasiswa.",
   },
 ];
 
