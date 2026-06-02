@@ -3,6 +3,8 @@ import {
   getRegistrationTypes,
   createEventRegistration,
 } from '../api/pendaftaranService';
+import { WHATSAPP_GROUPS } from '../constants/whatsappGroups';
+import { getAcara } from '../../agenda/api/acaraService';
 
 export const usePendaftaran = () => {
   const [registrationTypes, setRegistrationTypes] = useState([]);
@@ -16,19 +18,34 @@ export const usePendaftaran = () => {
   const fetchEvents = useCallback(async () => {
     setLoading(true);
     try {
-      const result = await getRegistrationTypes();
-      const formattedData = result.data.map((item) => ({
-        id: item.id,
-        title: item.name,
-        category: item.type,
-        image: item.image || `/images/bootcmp2025.jpg`,
-        description:
-          item.description ||
-          `Pendaftaran untuk ${item.name} periode ${item.year}.`,
-        status: item.isActive ? 'Dibuka' : 'Ditutup',
-        type: item.type,
-        eventId: item.eventId,
-      }));
+      const [regTypesResult, acaraResult] = await Promise.all([
+        getRegistrationTypes(),
+        getAcara().catch(() => ({ data: [] })),
+      ]);
+
+      const eventsList = acaraResult.data || [];
+      const eventImageMap = new Map();
+      eventsList.forEach(event => {
+        if (event.id && event.image) {
+          eventImageMap.set(event.id, event.image);
+        }
+      });
+
+      const formattedData = regTypesResult.data.map((item) => {
+        const mappedImage = item.eventId ? eventImageMap.get(item.eventId) : null;
+        return {
+          id: item.id,
+          title: item.name,
+          category: item.type,
+          image: mappedImage || item.image || `/images/himti-logo.png`,
+          description:
+            item.description ||
+            `Pendaftaran untuk ${item.name} periode ${item.year}.`,
+          status: item.isActive ? 'Dibuka' : 'Ditutup',
+          type: item.type,
+          eventId: item.eventId,
+        };
+      });
       setRegistrationTypes(formattedData);
     } catch (err) {
       setError('Gagal memuat daftar pendaftaran.');
@@ -86,7 +103,11 @@ export const usePendaftaran = () => {
 
     try {
       const response = await createEventRegistration(payload); 
-      const successLink = response.data?.link;
+      let successLink = response.data?.link;
+
+      if (formData.programBidang && WHATSAPP_GROUPS[formData.programBidang]) {
+        successLink = WHATSAPP_GROUPS[formData.programBidang];
+      }
 
       setFormStatus({
         type: 'success',

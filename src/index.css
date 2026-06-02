@@ -23,6 +23,26 @@
     animation: fade-in-down 0.8s ease-out forwards;
   }
 
+  .custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 20px;
+  }
+
+  @keyframes shine {
+  100% {
+    transform: translateX(300%);
+  }
+}
+.animate-shine {
+  animation: shine 1s ease-out infinite;
+}
+
   @keyframes scroll {
     to {
       transform: translate(calc(-50% - 0.5rem));
