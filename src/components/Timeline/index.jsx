@@ -40,7 +40,7 @@ export const TimelineItem = ({ item }) => {
             />
           </div>
 
-          {/* Wadah Teks */}
+          {/* Wadah Text */}
           <div className="p-6 flex flex-col justify-center">
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
               {item.tags.map((tag, index) => (
