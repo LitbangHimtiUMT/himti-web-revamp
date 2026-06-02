@@ -18,7 +18,12 @@ const descriptionText = event.description
     time: startTime.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) + ' WIB',
     location: "Informasi Lokasi Menyusul", 
     description: descriptionText,
-    tags: [event.type === 'COMMON' ? 'Umum' : 'Acara', event.isOpen ? 'Pendaftaran Dibuka' : 'Ditutup'],
+    tags: [
+      event.type === 'COMMON' ? 'Umum' : 'Registration', 
+      event.isOpen 
+        ? 'Pendaftaran Dibuka' 
+        : (new Date() < startTime ? 'Pendaftaran Belum Dimulai' : 'Ditutup')
+    ],
     status: new Date(event.endTime) > new Date() ? 'upcoming' : 'finished',
     image: event.image, // Menambahkan properti image
   };
