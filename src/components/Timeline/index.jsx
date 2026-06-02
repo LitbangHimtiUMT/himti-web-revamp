@@ -50,6 +50,10 @@ export const TimelineItem = ({ item }) => {
                     "rounded-full px-3 py-1 text-xs font-semibold",
                     tag === "Pendaftaran Dibuka"
                       ? "bg-green-100 text-green-800 animate-pulse"
+                      : tag === "Pendaftaran Belum Dimulai"
+                      ? "bg-amber-100 text-amber-800"
+                      : tag === "Ditutup"
+                      ? "bg-rose-100 text-rose-800"
                       : "bg-blue-100 text-blue-800"
                   )}
                 >
