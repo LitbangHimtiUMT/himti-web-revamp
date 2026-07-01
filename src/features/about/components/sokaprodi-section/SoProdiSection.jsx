@@ -1,36 +1,20 @@
 import TeamCarousel from "./TeamCarousel";
 import { Poppins } from "../../../../components/ui/Text";
-import kaProdi from "../../../../core/assets/images/soprodi/dosen-arief.jpg";
-import sekProdi from "../../../../core/assets/images/soprodi/dosen-sukri.jpg";
-import kaLab from "../../../../core/assets/images/soprodi/dosen-faridi.jpg";
-
-
-// Data dosen/kaprodi
-const teamMembers = [
-  {
-    id: "1",
-    name: "Arief Herdiansah, M.TI",
-    role: "Ketua Prodi Teknik Informatika",
-    image: kaProdi,
-    bio: "Memimpin pengembangan akademik Program Studi Teknik Informatika periode 2026 – 2030 dengan fokus pada inovasi dan kualitas pendidikan.",
-  },
-  {
-    id: "2",
-    name: "Sukri Harli, M.TI",
-    role: "Sekretaris Prodi Teknik Informatika",
-    image: sekProdi,
-    bio: "Berperan dalam pengelolaan administrasi akademik dan pengembangan program kerja Prodi Teknik Informatika.",
-  },
-  {
-    id: "3",
-    name: "Faridi, M.Kom",
-    role: "Kepala Laboratorium Komputer",
-    image: kaLab,
-    bio: "Berfokus pada pengembangan laboratorium komputer, praktikum, serta penguatan kompetensi teknologi mahasiswa.",
-  },
-];
+import { useProdi } from "../../hooks/useProdi";
+import LoadingStatus from "../../../../components/LoadingStatus";
+import ErrorStatus from "../../../../components/ErrorStatus";
 
 export default function SoProdiSection() {
+  const { members, loading, error, refetch } = useProdi();
+
+  if (loading) {
+    return <LoadingStatus message="Memuat data struktural prodi..." />;
+  }
+
+  if (error) {
+    return <ErrorStatus message={error} onRetry={refetch} />;
+  }
+
   return (
     <section className="bg-white py-20 px-4">
       <div className="max-w-7xl mx-auto text-center">
@@ -46,7 +30,7 @@ export default function SoProdiSection() {
         </Poppins>
       </div>
       <div className="mt-12">
-        <TeamCarousel members={teamMembers} />
+        <TeamCarousel members={members} />
       </div>
     </section>
   );

@@ -1,49 +1,37 @@
 import { Poppins } from "../../../../components/ui/Text";
 import { ScrollTimeline } from "./ScrollTimeline";
-import {
-  Target,
-  CheckCircle,
-  Handshake,
-  GitBranch,
-  Lightbulb,
-} from "lucide-react";
+import { Target, CheckCircle, Handshake, GitBranch, Lightbulb } from "lucide-react";
 import { BackgroundBeams } from "./BackgroundBeams";
 import { WaveSeparator } from "./WaveSeparator";
+import { useVisiMisi } from "../../hooks/useVisiMisi";
+import LoadingStatus from "../../../../components/LoadingStatus";
+import ErrorStatus from "../../../../components/ErrorStatus";
 
-const misiData = [
-  {
-    icon: <Target className="text-blue-600" size={24} />,
-    title: "Menguatkan Kualitas Akademik",
-    description:
-      "Mengembangkan kualitas akademik anggota melalui pembelajaran, diskusi ilmiah, pendampingan akademik, serta penguatan bidang SESAC sebagai wadah peningkatan kompetensi dan prestasi yang berdaya saing.",
-  },
-  {
-    icon: <Lightbulb className="text-blue-600" size={24} />,
-    title: "Mendorong Riset & Inovasi Teknologi",
-    description:
-      "Mendorong riset, inovasi, dan karya teknologi informatika yang aplikatif melalui pelatihan, workshop, kompetisi, serta kegiatan akademik yang relevan dengan kebutuhan industri dan masyarakat.",
-  },
-  {
-    icon: <CheckCircle className="text-blue-600" size={24} />,
-    title: "Mengembangkan SDM HIMTI",
-    description:
-      "Mengembangkan sumber daya manusia HIMTI melalui penguatan soft skill, kepemimpinan, profesionalisme, dan budaya organisasi guna menciptakan anggota yang berkarakter dan siap berkontribusi.",
-  },
-  {
-    icon: <Handshake className="text-blue-600" size={24} />,
-    title: "Mewujudkan Organisasi Kolaboratif",
-    description:
-      "Mewujudkan organisasi HIMTI yang aktif, transparan, dan kolaboratif melalui forum diskusi organisasi, kajian isu, serta kerja sama internal dan eksternal termasuk kunjungan studi ke instansi dan perusahaan teknologi.",
-  },
-  {
-    icon: <GitBranch className="text-blue-600" size={24} />,
-    title: "Mengembangkan Kewirausahaan",
-    description:
-      "Mengembangkan kewirausahaan dan kemandirian organisasi melalui program pengembangan usaha anggota serta pengelolaan keuangan yang transparan dan berkelanjutan.",
-  },
+const iconMap = [
+  <Target key="target" className="text-blue-600" size={24} />,
+  <Lightbulb key="lightbulb" className="text-blue-600" size={24} />,
+  <CheckCircle key="check" className="text-blue-600" size={24} />,
+  <Handshake key="handshake" className="text-blue-600" size={24} />,
+  <GitBranch key="branch" className="text-blue-600" size={24} />,
 ];
 
 export default function VisiMisiSection() {
+  const { data, loading, error } = useVisiMisi();
+
+  if (loading) {
+    return <LoadingStatus message="Memuat data visi dan misi..." />;
+  }
+
+  if (error) {
+    return <ErrorStatus message={error} />;
+  }
+
+  const missionItems = (data?.mission ?? []).map((item, index) => ({
+    icon: iconMap[index % iconMap.length],
+    title: item.title,
+    description: item.description,
+  }));
+
   return (
     <section className="bg-slate-950 pt-20 relative overflow-hidden">
       <WaveSeparator />
@@ -53,12 +41,15 @@ export default function VisiMisiSection() {
         {/* Visi */}
         <div className="text-center max-w-4xl mx-auto">
           <h2 className="mt-2 text-4xl md:text-5xl font-bold text-gray-100">
-            Visi & Misi HIMTI UMT
+            {data?.name ?? "Visi & Misi HIMTI UMT"}
           </h2>
+          <div className="mt-4 text-sm text-blue-200">
+            {data?.period ? `Periode ${data.period}` : ""}
+          </div>
           <div className="mt-8 p-8 bg-gradient-to-r from-[#4C76A3] to-[#203D5D] text-white rounded-2xl shadow-xl">
             <h3 className="text-2xl font-bold">Visi</h3>
             <Poppins className="mt-2 text-lg text-blue-100">
-              Mewujudkan HIMTI sebagai himpunan yang unggul dalam penguatan akademik, pengembangan inovasi, dan profesionalisme, serta didukung oleh organisasi yang aktif, kolaboratif, dan berintegritas dalam mendorong prestasi serta kontribusi nyata bagi anggota, kampus, dan masyarakat.
+              {data?.vision ?? "Visi belum tersedia."}
             </Poppins>
           </div>
         </div>
@@ -68,7 +59,7 @@ export default function VisiMisiSection() {
           <h3 className="text-center text-3xl font-bold text-gray-100 mb-4">
             Misi Kami
           </h3>
-          <ScrollTimeline events={misiData} />
+          <ScrollTimeline events={missionItems} />
         </div>
       </div>
 
