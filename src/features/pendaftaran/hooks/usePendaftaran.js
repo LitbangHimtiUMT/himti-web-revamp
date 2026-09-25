@@ -37,7 +37,8 @@ export const usePendaftaran = () => {
           id: item.id,
           title: item.name,
           category: item.type,
-          image: mappedImage || item.image || `/images/himti-logo.png`,
+          image: item.image || mappedImage || `/images/himti-logo.png`,
+          link: item.link,
           description:
             item.description ||
             `Pendaftaran untuk ${item.name} periode ${item.year}.`,
@@ -75,6 +76,14 @@ export const usePendaftaran = () => {
 
     if (formData.nim) {
       payload.append('nim', formData.nim);
+    }
+
+    if (formData.prodi) {
+      payload.append('prodi', formData.prodi);
+    }
+
+    if (formData.institution) {
+      payload.append('institution', formData.institution);
     }
 
     if (formData.generation && !isNaN(Number(formData.generation))) {
