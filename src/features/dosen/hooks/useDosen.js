@@ -19,11 +19,14 @@ export const useDosen = () => {
         // avatar default
         const fallbackImage = avatarNetral;
 
-        return {
+                return {
           id: item.id,
           name: item.name,
           title: item.lesson || "Dosen Teknik Informatika",
           nidn: item.nidn,
+          // Sembunyikan NIDN placeholder "seed_xxx" di UI.
+          _hasRealNidn: item.nidn && !/^seed_/i.test(item.nidn),
+          sintaId: item.sintaId || null,
           image: item.image ? `${API_BASE_URL}${item.image}` : fallbackImage,
           email: item.email,
           phone: item.numberPhone,

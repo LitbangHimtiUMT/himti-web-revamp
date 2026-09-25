@@ -1,6 +1,5 @@
 import React from "react";
 import { usePendaftaran } from "../hooks/usePendaftaran";
-import LoadingStatus from "../../../components/LoadingStatus";
 import ErrorStatus from "../../../components/ErrorStatus";
 import PendaftaranSection from "../components/PendaftaranSection";
 
@@ -18,11 +17,11 @@ const PendaftaranPage = () => {
     setFormStatus,
   } = usePendaftaran();
 
-  if (loading) return <LoadingStatus message="Memuat Pendaftaran..." />;
   if (error) return <ErrorStatus message={error} onRetry={refetch} />;
 
   return (
     <PendaftaranSection
+      loading={loading}
       registrationTypes={registrationTypes}
       selectedEvent={selectedEvent}
       setSelectedEvent={setSelectedEvent}

@@ -1,9 +1,11 @@
 import React from "react";
 import { Poppins } from "../../../components/ui/Text";
 import EventCard from "./EventCard";
+import EventCardSkeleton from "./EventCardSkeleton";
 import PendaftaranForm from "./PendaftaranForm";
 
 const PendaftaranSection = ({
+  loading = false,
   registrationTypes,
   selectedEvent,
   setSelectedEvent,
@@ -29,9 +31,13 @@ const PendaftaranSection = ({
           </Poppins>
         </div>
 
-        {/* Event Grid */}
+                {/* Event Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {registrationTypes.length > 0 ? (
+          {loading ? (
+            Array.from({ length: 3 }).map((_, i) => (
+              <EventCardSkeleton key={`skeleton-${i}`} />
+            ))
+          ) : registrationTypes.length > 0 ? (
             registrationTypes.map((event) => (
               <EventCard
                 key={event.id}
