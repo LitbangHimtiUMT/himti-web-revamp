@@ -1,6 +1,9 @@
+import { ArrowUpRight, LayoutDashboard } from "lucide-react";
 import { Poppins } from "../../../components/ui/Text";
+import { Badge } from "../../../components/ui/Badges";
+import { Button } from "../../../components/ui/Button";
 import PortalCard from "../components/PortalCard";
-import { platforms, mainPlatforms, internalPlatforms } from "../data/platforms";
+import { mainPlatforms, internalPlatforms } from "../data/platforms";
 import himtiLogo from "../../../core/assets/images/himti-logo.png";
 
 // Animasi halaman ini sengaja dibuat sebagai animasi masuk (entrance),
@@ -10,13 +13,12 @@ import himtiLogo from "../../../core/assets/images/himti-logo.png";
 // (lihat aturan di src/index.css).
 
 const PortalPage = () => {
-  const featured = platforms.find((item) => item.featured);
-  const restMain = mainPlatforms.filter((item) => !item.featured);
+  const internal = internalPlatforms[0];
 
   return (
     <div>
       {/* Hero */}
-      <section className="py-20 animate-fade-in-up">
+      <section className="py-16 animate-fade-in-up">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <img
             src={himtiLogo}
@@ -30,61 +32,90 @@ const PortalPage = () => {
             Satu Pintu ke Platform HIMTI
           </h1>
           <Poppins className="mt-4 max-w-3xl mx-auto text-lg text-gray-600">
-            Setiap platform di bawah ini punya sistemnya sendiri. Portal ini
-            hanya mengarahkan, bukan menyimpan katalog, materi, atau data
-            voting — jadi tidak ada dua tempat yang harus dirawat.
+            Semua layanan HIMTI ada di satu tempat ini. Mau belanja,
+            belajar, atau ikut voting, tinggal klik kartunya.
+            Masing-masing layanan tetap jalan di sistemnya sendiri, jadi
+            portal ini cuma jadi pintu masuknya, bukan tempat nyimpen
+            datanya.
           </Poppins>
         </div>
       </section>
 
-      {/* Layanan utama: Danus featured, lalu LMS + Election */}
-      <section className="pb-20">
+      {/* Layanan utama: grid seragam, semua kartu sama tinggi.
+          Danus tetap dibedakan lewat garis kuning di atas kartu dan
+          tombol kuningnya, bukan lagi lewat kartu selebar penuh. */}
+      <section className="pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {featured && (
-            <PortalCard platform={featured} featured style={{ animationDelay: "100ms" }} />
-          )}
-
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-            {restMain.map((platform, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {mainPlatforms.map((platform, index) => (
               <PortalCard
                 key={platform.id}
                 platform={platform}
-                style={{ animationDelay: `${200 + index * 120}ms` }}
+                featured={platform.featured}
+                style={{ animationDelay: `${100 + index * 120}ms` }}
               />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Area pengurus: sengaja dipisah dan dibuat lebih kalem,
+      {/* Area pengurus: satu baris horizontal, bukan kartu grid yang
+          menggantung sendirian. Sengaja dipisah dan dibuat lebih kalem,
           bukan dipajang sejajar dengan layanan publik. */}
-      <section className="pb-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gray-100 rounded-2xl p-6 md:p-8">
-            <Poppins className="font-semibold text-gray-900 tracking-wider uppercase text-sm">
-              Area Pengurus
-            </Poppins>
-            <Poppins className="mt-2 text-gray-600">
-              Platform internal di bawah ini hanya untuk pengurus HIMTI.
-            </Poppins>
-            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-              {internalPlatforms.map((platform) => (
-                <PortalCard key={platform.id} platform={platform} />
-              ))}
+      {internal && (
+        <section className="pb-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="bg-gray-100 rounded-2xl p-6 md:p-8">
+              <Poppins className="font-semibold text-gray-900 tracking-wider uppercase text-sm">
+                Area Pengurus
+              </Poppins>
+              <div className="mt-4 flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
+                <div className="p-3 bg-white rounded-full shrink-0 w-fit">
+                  <LayoutDashboard className="h-6 w-6 text-gray-800" />
+                </div>
+                <div className="flex-grow">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <h3 className="text-lg font-bold text-gray-900">
+                      {internal.name}
+                    </h3>
+                    <Badge variant={internal.badgeVariant} rounded="full" size="sm">
+                      {internal.audience}
+                    </Badge>
+                  </div>
+                  <Poppins className="mt-1 text-sm text-gray-600">
+                    {internal.description}
+                  </Poppins>
+                  <Poppins className="mt-1 text-sm text-gray-500">
+                    {internal.accessNote}
+                  </Poppins>
+                </div>
+                <a
+                  href={internal.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="shrink-0"
+                >
+                  <Button variant="primary" size="md" rounded="full">
+                    <span className="flex items-center gap-2 px-4">
+                      <span>Buka {internal.shortName}</span>
+                      <ArrowUpRight size={18} />
+                    </span>
+                  </Button>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Catatan akses */}
       <section className="pb-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Poppins className="text-gray-600">
-            Tautan di atas hanya mengarahkan ke platform masing-masing.
-            Kalau kamu belum punya akses (misalnya belum jadi anggota,
-            belum jadi pengurus, atau belum di-invite admin Election),
-            silakan hubungi pengurus HIMTI — portal ini tidak bisa
-            memberikan akses tersebut.
+            Kalau ada layanan yang belum bisa kamu buka, tenang, itu
+            bukan rusak. Ada layanan yang memang khusus anggota, khusus
+            pengurus, atau khusus yang sudah diundang admin. Coba hubungi
+            pengurus HIMTI dulu, nanti mereka yang bantu bukain aksesnya.
           </Poppins>
         </div>
       </section>
