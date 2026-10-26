@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router";
+import { Navigate, Route, Routes } from "react-router";
 import MainLayout from "../features/layout/view/MainLayout";
 import HomePage from "../features/home/view/HomePage";
 import AboutPage from "../features/about/view/AboutPage";
@@ -10,7 +10,6 @@ import TutorialPage from "../features/tutorial/view/TutorialPage";
 import TutorialDetailPage from "../features/tutorial/view/TutorialDetailPage";
 import AgendaPage from "../features/agenda/view/AgendaPage";
 import DosenPage from "../features/dosen/view/DosenPage";
-import KlinikPage from "../features/klinik/view/KlinikPage";
 import PortalPage from "../features/portal/view/PortalPage";
 import SertifikatPage from "../features/sertifikat/view/SertifikatPage";
 import PendaftaranPage from "../features/pendaftaran/view/PendaftaranPage";
@@ -32,7 +31,10 @@ export default function AppRoutes() {
           <Route path="/tutorial/:id" element={<TutorialDetailPage />} />
           <Route path="/agenda" element={<AgendaPage />} />
           <Route path="/dosen" element={<DosenPage />} />
-          <Route path="/klinik" element={<KlinikPage />} />
+          {/* Klinik sudah pindah ke Danus: halaman lama dihapus, URL lama
+              dialihkan ke Portal (bukan 404) agar bookmark/link lama tetap
+              sampai ke layanannya. */}
+          <Route path="/klinik" element={<Navigate to="/portal" replace />} />
           <Route path="/portal" element={<PortalPage />} />
           <Route path="/sertifikat" element={<SertifikatPage />} />
           <Route path="/pendaftaran" element={<PendaftaranPage />} />

@@ -16,14 +16,14 @@ const iconMap = [
 ];
 
 export default function VisiMisiSection() {
-  const { data, loading, error } = useVisiMisi();
+  const { data, loading, error, refetch } = useVisiMisi();
 
   if (loading) {
     return <LoadingStatus message="Memuat data visi dan misi..." />;
   }
 
   if (error) {
-    return <ErrorStatus message={error} />;
+    return <ErrorStatus message={error} onRetry={refetch} />;
   }
 
   const missionItems = (data?.mission ?? []).map((item, index) => ({
