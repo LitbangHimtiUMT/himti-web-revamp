@@ -123,10 +123,10 @@ export default function ModernFooter() {
             </Poppins>
             <nav className="mt-4 space-y-3">
               <Link
-                to="/klinik"
+                to="/portal"
                 className="block text-gray-100 hover:text-white"
               >
-                Klinik
+                Portal
               </Link>
               <Link
                 to="/sertifikat"

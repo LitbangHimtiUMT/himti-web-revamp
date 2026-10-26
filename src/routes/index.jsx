@@ -11,6 +11,7 @@ import TutorialDetailPage from "../features/tutorial/view/TutorialDetailPage";
 import AgendaPage from "../features/agenda/view/AgendaPage";
 import DosenPage from "../features/dosen/view/DosenPage";
 import KlinikPage from "../features/klinik/view/KlinikPage";
+import PortalPage from "../features/portal/view/PortalPage";
 import SertifikatPage from "../features/sertifikat/view/SertifikatPage";
 import PendaftaranPage from "../features/pendaftaran/view/PendaftaranPage";
 import NotFound from "../features/display/view/NotFound";
@@ -32,6 +33,7 @@ export default function AppRoutes() {
           <Route path="/agenda" element={<AgendaPage />} />
           <Route path="/dosen" element={<DosenPage />} />
           <Route path="/klinik" element={<KlinikPage />} />
+          <Route path="/portal" element={<PortalPage />} />
           <Route path="/sertifikat" element={<SertifikatPage />} />
           <Route path="/pendaftaran" element={<PendaftaranPage />} />
         </Route>
