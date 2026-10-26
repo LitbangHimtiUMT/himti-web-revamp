@@ -59,7 +59,10 @@ export default function BannerSection() {
 
         <Button variant="secondary" size="sm" rounded="full">
           <div className="flex items-center gap-2 px-1">
-            <Link to="/tentang-kami">Jelajahi HIMTI</Link>
+            {/* Route /tentang-kami TIDAK ADA (cuma /tentang), jadi tombol
+                ini dulu jatuh ke halaman 404. Diperbaiki ke /tentang,
+                sama seperti Navbar, Footer, dan MiniAbout. */}
+            <Link to="/tentang">Jelajahi HIMTI</Link>
             <ArrowRight size={18} />
           </div>
         </Button>

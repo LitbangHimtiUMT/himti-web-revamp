@@ -37,9 +37,13 @@ const Card = ({ item }) => {
 
 export const ParallaxScroll = ({ items, className }) => {
   const gridRef = useRef(null);
+  // Dulu: useScroll pakai container + tinggi tetap 45rem + overflow-y-auto,
+  // jadi section ini punya scrollbar sendiri DI DALAM scrollbar halaman
+  // (2 scrollbar). Sekarang: parallax didorong scroll HALAMAN (target),
+  // dari section masuk viewport sampai keluar viewport.
   const { scrollYProgress } = useScroll({
-    container: gridRef,
-    offset: ["start start", "end start"], // Animate from the start to the end of the container
+    target: gridRef,
+    offset: ["start end", "end start"],
   });
 
   // Transform untuk kolom kiri (bergerak ke atas)
@@ -52,10 +56,11 @@ export const ParallaxScroll = ({ items, className }) => {
   const rightColumnItems = items.filter((_, index) => index % 2 !== 0);
 
   return (
-    // Container dengan tinggi tetap dan scrollable, ini adalah kunci efek parallax
+    // Tinggi natural mengikuti isi (tidak lagi 45rem + overflow-y-auto):
+    // section ini ikut discroll halaman, bukan discroll di dalam dirinya.
     <div
       ref={gridRef}
-      className={cn("h-[45rem] w-full overflow-y-auto", className)}
+      className={cn("w-full", className)}
     >
       {/* Padding di dalam agar ada ruang untuk scroll */}
       <div

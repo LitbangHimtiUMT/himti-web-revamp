@@ -6,9 +6,15 @@ import { cn } from "../../../../lib/utils";
 export const StickyScroll = ({ content, contentClassName }) => {
   const [activeCard, setActiveCard] = React.useState(0);
   const ref = useRef(null);
+  // Dulu: useScroll pakai container + tinggi 30rem + overflow-y-auto,
+  // jadi section ini punya scrollbar sendiri di dalam scrollbar halaman
+  // (2 scrollbar). Sekarang: progres didorong scroll HALAMAN lewat section
+  // ini (target), dari atas section menyentuh atas viewport sampai bawah
+  // section menyentuh bawah viewport — efek sticky + ganti kartu tetap
+  // jalan, tapi tanpa scrollbar dalam.
   const { scrollYProgress } = useScroll({
-    container: ref,
-    offset: ["start start", "end start"],
+    target: ref,
+    offset: ["start start", "end end"],
   });
   const cardLength = content.length;
 
@@ -42,7 +48,7 @@ export const StickyScroll = ({ content, contentClassName }) => {
       animate={{
         backgroundColor: backgroundColors[activeCard % backgroundColors.length],
       }}
-      className="h-[30rem] overflow-y-auto flex justify-center relative space-x-10 rounded-md p-10"
+      className="flex justify-center items-start relative space-x-10 rounded-md p-10"
       ref={ref}
     >
       <div className="div relative flex text-center md:text-left px-4">
