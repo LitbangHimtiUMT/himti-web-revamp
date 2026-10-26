@@ -1,37 +1,51 @@
 /* eslint-disable react/prop-types */
-import React, { useRef } from "react";
-import { useMotionValueEvent, useScroll, motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { cn } from "../../../../lib/utils";
 
 export const StickyScroll = ({ content, contentClassName }) => {
-  const [activeCard, setActiveCard] = React.useState(0);
-  const ref = useRef(null);
-  // Dulu: useScroll pakai container + tinggi 30rem + overflow-y-auto,
-  // jadi section ini punya scrollbar sendiri di dalam scrollbar halaman
-  // (2 scrollbar). Sekarang: progres didorong scroll HALAMAN lewat section
-  // ini (target), dari atas section menyentuh atas viewport sampai bawah
-  // section menyentuh bawah viewport — efek sticky + ganti kartu tetap
-  // jalan, tapi tanpa scrollbar dalam.
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end end"],
-  });
-  const cardLength = content.length;
+  const [activeCard, setActiveCard] = useState(0);
+  const itemRefs = useRef([]);
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const cardsBreakpoints = content.map((_, index) => index / cardLength);
-    const closestBreakpointIndex = cardsBreakpoints.reduce(
-      (acc, breakpoint, index) => {
-        const distance = Math.abs(latest - breakpoint);
-        if (distance < Math.abs(latest - cardsBreakpoints[acc])) {
-          return index;
-        }
-        return acc;
+  // AKAR INKONSISTENSI SEBELUMNYA (2 hal, keduanya diperbaiki di sini):
+  //
+  // 1. Kartu aktif dulu dihitung dari progres SELURUH section
+  //    (useScroll target + offset ["start start", "end end"], breakpoint
+  //    index / jumlahKartu = 0, 0.25, 0.5, 0.75). Progres itu dinormalisasi
+  //    ke (tinggiSection - tinggiViewport), sedangkan jarak antar item
+  //    di kolom kiri jauh lebih besar — jadi kartu aktif berganti 2x
+  //    lebih cepat daripada item yang benar-benar lewat di layar, dan
+  //    gambar di kanan tidak pernah sejajar dengan teks yang sedang
+  //    dibaca. Sekarang kartu aktif ditentukan per item: sebuah item
+  //    menjadi aktif tepat saat judulnya masuk ke pita 35%-45% tinggi
+  //    viewport (rootMargin "-35% 0px -55% 0px"). Dengan begitu, ganti
+  //    gambar selalu bertepatan dengan item yang sedang dibaca, tidak
+  //    peduli berapa tinggi item, tinggi section, atau tinggi viewport.
+  //
+  // 2. Gambar sticky dulu top-10 (40px), sedangkan navbar fixed di
+  //    top-4 (16px) + tinggi ~64px = ujung bawahnya di ~80px. Jadi
+  //    gambar sticky selalu menyelip 40px DI BAWAH navbar (terlihat
+  //    kepotong/blur di screenshot). Sekarang top-24 (96px) = ujung
+  //    bawah navbar + jarak 16px, jadi gambar selalu utuh di bawah
+  //    navbar.
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveCard(Number(entry.target.dataset.index));
+          }
+        });
       },
-      0,
+      { rootMargin: "-35% 0px -55% 0px", threshold: 0 }
     );
-    setActiveCard(closestBreakpointIndex);
-  });
+
+    itemRefs.current.forEach((el) => {
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [content.length]);
 
   const backgroundColors = [
     "var(--slate-900)",
@@ -49,12 +63,18 @@ export const StickyScroll = ({ content, contentClassName }) => {
         backgroundColor: backgroundColors[activeCard % backgroundColors.length],
       }}
       className="flex justify-center items-start relative space-x-10 rounded-md p-10"
-      ref={ref}
     >
       <div className="div relative flex text-center md:text-left px-4">
         <div className="max-w-2xl">
           {content.map((item, index) => (
-            <div key={item.title + index} className="my-20">
+            <div
+              key={item.title + index}
+              className="my-20"
+              data-index={index}
+              ref={(el) => {
+                itemRefs.current[index] = el;
+              }}
+            >
               <motion.h2
                 initial={{
                   opacity: 0,
@@ -87,7 +107,7 @@ export const StickyScroll = ({ content, contentClassName }) => {
           background: linearGradients[activeCard % linearGradients.length],
         }}
         className={cn(
-          "hidden lg:block h-60 w-80 rounded-md bg-white sticky top-10 overflow-hidden",
+          "hidden lg:block h-60 w-80 rounded-md bg-white sticky top-24 overflow-hidden",
           contentClassName,
         )}
       >
