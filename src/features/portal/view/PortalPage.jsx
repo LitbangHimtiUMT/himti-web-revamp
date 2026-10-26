@@ -33,10 +33,8 @@ const PortalPage = () => {
           </h1>
           <Poppins className="mt-4 max-w-3xl mx-auto text-lg text-gray-600">
             Semua layanan HIMTI ada di satu tempat ini. Mau belanja,
-            belajar, atau ikut voting, tinggal klik kartunya.
-            Masing-masing layanan tetap jalan di sistemnya sendiri, jadi
-            portal ini cuma jadi pintu masuknya, bukan tempat nyimpen
-            datanya.
+            belajar, atau ikut voting, tinggal klik kartunya aja, nanti
+            kamu langsung sampai ke layanannya.
           </Poppins>
         </div>
       </section>
@@ -112,10 +110,10 @@ const PortalPage = () => {
       <section className="pb-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Poppins className="text-gray-600">
-            Kalau ada layanan yang belum bisa kamu buka, tenang, itu
-            bukan rusak. Ada layanan yang memang khusus anggota, khusus
-            pengurus, atau khusus yang sudah diundang admin. Coba hubungi
-            pengurus HIMTI dulu, nanti mereka yang bantu bukain aksesnya.
+            Tiap layanan di atas punya aturan sendiri soal siapa yang
+            bisa masuk. Ada yang terbuka untuk umum, ada yang khusus
+            anggota, pengurus, atau yang sudah diundang. Kalau kamu perlu
+            akses ke salah satunya, hubungi pengurus HIMTI aja.
           </Poppins>
         </div>
       </section>
