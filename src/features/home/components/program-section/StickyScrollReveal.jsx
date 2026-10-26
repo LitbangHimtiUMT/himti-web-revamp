@@ -5,30 +5,38 @@ import { cn } from "../../../../lib/utils";
 
 export const StickyScroll = ({ content, contentClassName }) => {
   const [activeCard, setActiveCard] = useState(0);
+  const containerRef = useRef(null);
   const itemRefs = useRef([]);
 
-  // AKAR INKONSISTENSI SEBELUMNYA (2 hal, keduanya diperbaiki di sini):
+  // SOLUSI untuk "page utama ikut ke-scroll":
   //
-  // 1. Kartu aktif dulu dihitung dari progres SELURUH section
-  //    (useScroll target + offset ["start start", "end end"], breakpoint
-  //    index / jumlahKartu = 0, 0.25, 0.5, 0.75). Progres itu dinormalisasi
-  //    ke (tinggiSection - tinggiViewport), sedangkan jarak antar item
-  //    di kolom kiri jauh lebih besar — jadi kartu aktif berganti 2x
-  //    lebih cepat daripada item yang benar-benar lewat di layar, dan
-  //    gambar di kanan tidak pernah sejajar dengan teks yang sedang
-  //    dibaca. Sekarang kartu aktif ditentukan per item: sebuah item
-  //    menjadi aktif tepat saat judulnya masuk ke pita 35%-45% tinggi
-  //    viewport (rootMargin "-35% 0px -55% 0px"). Dengan begitu, ganti
-  //    gambar selalu bertepatan dengan item yang sedang dibaca, tidak
-  //    peduli berapa tinggi item, tinggi section, atau tinggi viewport.
+  // Section ini KEMBALI discroll di dalam dirinya sendiri (container
+  // tinggi tetap + overflow-y-auto), bukan lewat scroll halaman.
+  // Akibatnya, saat kursor/roda scroll berada di atas section ini,
+  // yang bergerak hanya isi section ini — teks bergeser, gambar kanan
+  // berganti — sementara halaman utama DIAM di tempat, sampai isi
+  // section mencapai ujung atas/bawah, baru setelah itu scroll halaman
+  // berlanjut ke section berikutnya. Itu perilaku native nested scroll
+  // container di browser, bukan scroll-jacking buatan.
   //
-  // 2. Gambar sticky dulu top-10 (40px), sedangkan navbar fixed di
-  //    top-4 (16px) + tinggi ~64px = ujung bawahnya di ~80px. Jadi
-  //    gambar sticky selalu menyelip 40px DI BAWAH navbar (terlihat
-  //    kepotong/blur di screenshot). Sekarang top-24 (96px) = ujung
-  //    bawah navbar + jarak 16px, jadi gambar selalu utuh di bawah
-  //    navbar.
+  // Dua keluhan sebelumnya tetap terjaga:
+  // - Tidak ada scrollbar kedua yang KELIHATAN: scrollbar container
+  //   disembunyikan total lewat `.no-visible-scrollbar` (lihat index.css),
+  //   tapi area tetap bisa discroll. Yang kelihatan cuma scrollbar halaman.
+  // - Kartu aktif tetap konsisten (perbaikan dari commit sebelumnya):
+  //   bukan dari progres section, melainkan per item — item menjadi aktif
+  //   tepat saat judulnya masuk pita 35%-45% dari kotak container ini.
+  //   Bedanya dengan versi sebelumnya: root observer sekarang container
+  //   itu sendiri, bukan viewport halaman.
+  //
+  // Dan satu hal yang ikut kembali normal: gambar sticky di sini
+  // `top-10` (40px dari atas KOTAK container, bukan dari atas viewport),
+  // jadi tidak lagi menyelip di bawah navbar fixed seperti pada versi
+  // scroll-halaman kemarin.
   useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return undefined;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -37,7 +45,7 @@ export const StickyScroll = ({ content, contentClassName }) => {
           }
         });
       },
-      { rootMargin: "-35% 0px -55% 0px", threshold: 0 }
+      { root: container, rootMargin: "-35% 0px -55% 0px", threshold: 0 }
     );
 
     itemRefs.current.forEach((el) => {
@@ -62,7 +70,8 @@ export const StickyScroll = ({ content, contentClassName }) => {
       animate={{
         backgroundColor: backgroundColors[activeCard % backgroundColors.length],
       }}
-      className="flex justify-center items-start relative space-x-10 rounded-md p-10"
+      className="h-[30rem] overflow-y-auto no-visible-scrollbar flex justify-center items-start relative space-x-10 rounded-md p-10"
+      ref={containerRef}
     >
       <div className="div relative flex text-center md:text-left px-4">
         <div className="max-w-2xl">
@@ -107,7 +116,7 @@ export const StickyScroll = ({ content, contentClassName }) => {
           background: linearGradients[activeCard % linearGradients.length],
         }}
         className={cn(
-          "hidden lg:block h-60 w-80 rounded-md bg-white sticky top-24 overflow-hidden",
+          "hidden lg:block h-60 w-80 rounded-md bg-white sticky top-10 overflow-hidden",
           contentClassName,
         )}
       >

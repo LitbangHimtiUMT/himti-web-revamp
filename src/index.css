@@ -32,6 +32,20 @@
     animation: fade-in-down 0.8s ease-out forwards;
   }
 
+  /* Scrollbar disembunyikan tapi area tetap bisa discroll. Dipakai
+     StickyScroll Program: section itu memang sengaja discroll di dalam
+     dirinya sendiri (bukan scroll halaman), tapi tanpa scrollbar kedua
+     yang kelihatan. Catatan: kelas `no-visible-scrollbar` sebelumnya
+     dipakai Tabs tapi tidak pernah didefinisikan di mana pun, jadi
+     definisi ini sekaligus memperbaiki itu. */
+  .no-visible-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-visible-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
   .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
   }
