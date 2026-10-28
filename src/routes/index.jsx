@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router";
+import { Route, Routes } from "react-router";
 import MainLayout from "../features/layout/view/MainLayout";
 import HomePage from "../features/home/view/HomePage";
 import AboutPage from "../features/about/view/AboutPage";
@@ -31,10 +31,10 @@ export default function AppRoutes() {
           <Route path="/tutorial/:id" element={<TutorialDetailPage />} />
           <Route path="/agenda" element={<AgendaPage />} />
           <Route path="/dosen" element={<DosenPage />} />
-          {/* Klinik sudah pindah ke Danus: halaman lama dihapus, URL lama
-              dialihkan ke Portal (bukan 404) agar bookmark/link lama tetap
-              sampai ke layanannya. */}
-          <Route path="/klinik" element={<Navigate to="/portal" replace />} />
+          {/* /klinik SENGAJA tidak punya route: halaman Klinik sudah tidak
+              ada dan layanannya pindah ke Danus lewat /portal, jadi URL
+              lama ini jatuh ke halaman 404 (route "*" di bawah), bukan
+              dialihkan ke /portal. */}
           <Route path="/portal" element={<PortalPage />} />
           <Route path="/sertifikat" element={<SertifikatPage />} />
           <Route path="/pendaftaran" element={<PendaftaranPage />} />
