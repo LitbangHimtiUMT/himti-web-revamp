@@ -40,7 +40,7 @@ const PortalPage = () => {
       </section>
 
       {/* Layanan utama: grid seragam, semua kartu sama tinggi.
-          Danus tetap dibedakan lewat garis kuning di atas kartu dan
+          Store tetap dibedakan lewat garis kuning di atas kartu dan
           tombol kuningnya, bukan lagi lewat kartu selebar penuh. */}
       <section className="pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
