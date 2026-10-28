@@ -16,9 +16,10 @@ const ErrorStatus = ({ message, onRetry }) => {
         {message || "Kami tidak dapat memuat data yang Anda minta. Silakan coba lagi beberapa saat."}
       </Poppins>
       {onRetry && (
-        <Button 
-          onClick={onRetry} 
-          className="mt-6 bg-red-600 hover:bg-red-700 text-white"
+        <Button
+          variant="danger"
+          onClick={onRetry}
+          className="mt-6"
         >
           Coba Lagi
         </Button>

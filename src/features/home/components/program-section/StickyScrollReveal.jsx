@@ -1,31 +1,59 @@
 /* eslint-disable react/prop-types */
-import React, { useRef } from "react";
-import { useMotionValueEvent, useScroll, motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { cn } from "../../../../lib/utils";
 
 export const StickyScroll = ({ content, contentClassName }) => {
-  const [activeCard, setActiveCard] = React.useState(0);
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    container: ref,
-    offset: ["start start", "end start"],
-  });
-  const cardLength = content.length;
+  const [activeCard, setActiveCard] = useState(0);
+  const containerRef = useRef(null);
+  const itemRefs = useRef([]);
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const cardsBreakpoints = content.map((_, index) => index / cardLength);
-    const closestBreakpointIndex = cardsBreakpoints.reduce(
-      (acc, breakpoint, index) => {
-        const distance = Math.abs(latest - breakpoint);
-        if (distance < Math.abs(latest - cardsBreakpoints[acc])) {
-          return index;
-        }
-        return acc;
+  // SOLUSI untuk "page utama ikut ke-scroll":
+  //
+  // Section ini KEMBALI discroll di dalam dirinya sendiri (container
+  // tinggi tetap + overflow-y-auto), bukan lewat scroll halaman.
+  // Akibatnya, saat kursor/roda scroll berada di atas section ini,
+  // yang bergerak hanya isi section ini — teks bergeser, gambar kanan
+  // berganti — sementara halaman utama DIAM di tempat, sampai isi
+  // section mencapai ujung atas/bawah, baru setelah itu scroll halaman
+  // berlanjut ke section berikutnya. Itu perilaku native nested scroll
+  // container di browser, bukan scroll-jacking buatan.
+  //
+  // Dua keluhan sebelumnya tetap terjaga:
+  // - Tidak ada scrollbar kedua yang KELIHATAN: scrollbar container
+  //   disembunyikan total lewat `.no-visible-scrollbar` (lihat index.css),
+  //   tapi area tetap bisa discroll. Yang kelihatan cuma scrollbar halaman.
+  // - Kartu aktif tetap konsisten (perbaikan dari commit sebelumnya):
+  //   bukan dari progres section, melainkan per item — item menjadi aktif
+  //   tepat saat judulnya masuk pita 35%-45% dari kotak container ini.
+  //   Bedanya dengan versi sebelumnya: root observer sekarang container
+  //   itu sendiri, bukan viewport halaman.
+  //
+  // Dan satu hal yang ikut kembali normal: gambar sticky di sini
+  // `top-10` (40px dari atas KOTAK container, bukan dari atas viewport),
+  // jadi tidak lagi menyelip di bawah navbar fixed seperti pada versi
+  // scroll-halaman kemarin.
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return undefined;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveCard(Number(entry.target.dataset.index));
+          }
+        });
       },
-      0,
+      { root: container, rootMargin: "-35% 0px -55% 0px", threshold: 0 }
     );
-    setActiveCard(closestBreakpointIndex);
-  });
+
+    itemRefs.current.forEach((el) => {
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [content.length]);
 
   const backgroundColors = [
     "var(--slate-900)",
@@ -42,13 +70,20 @@ export const StickyScroll = ({ content, contentClassName }) => {
       animate={{
         backgroundColor: backgroundColors[activeCard % backgroundColors.length],
       }}
-      className="h-[30rem] overflow-y-auto flex justify-center relative space-x-10 rounded-md p-10"
-      ref={ref}
+      className="h-[30rem] overflow-y-auto no-visible-scrollbar flex justify-center items-start relative space-x-10 rounded-md p-10"
+      ref={containerRef}
     >
       <div className="div relative flex text-center md:text-left px-4">
         <div className="max-w-2xl">
           {content.map((item, index) => (
-            <div key={item.title + index} className="my-20">
+            <div
+              key={item.title + index}
+              className="my-20"
+              data-index={index}
+              ref={(el) => {
+                itemRefs.current[index] = el;
+              }}
+            >
               <motion.h2
                 initial={{
                   opacity: 0,

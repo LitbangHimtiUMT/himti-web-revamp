@@ -1,4 +1,3 @@
-import React from 'react';
 import { useAgenda } from '../../../agenda/hooks/useAgenda';
 import LoadingStatus from '../../../../components/LoadingStatus';
 import { Poppins } from '../../../../components/ui/Text';
@@ -41,9 +40,24 @@ const LatestAgendaSection = () => {
           </Poppins>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+        {/* Kalau cuma ada 1 kegiatan, jangan pakai grid 2 kolom (kartunya
+            jadi nempel kiri dengan kolom kanan kosong). Satu kolom yang
+            dipusatkan + kartu dibuat lebih tinggi supaya tetap terlihat
+            seperti spotlight, bukan strip kecil. */}
+        <div
+          className={
+            latestEvents.length === 1
+              ? "grid grid-cols-1 gap-8 max-w-2xl mx-auto w-full"
+              : "grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch"
+          }
+        >
           {/* Spotlight Card */}
-          <Link to="/agenda" className="group block rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+          <Link
+            to="/agenda"
+            className={`group block rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 ${
+              latestEvents.length === 1 ? "min-h-[320px]" : ""
+            }`}
+          >
             <div className="relative h-full">
               <img src={spotlightEvent.image} alt={spotlightEvent.name} className="absolute inset-0 w-full h-full object-cover" loading="lazy"/>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
@@ -61,7 +75,9 @@ const LatestAgendaSection = () => {
             </div>
           </Link>
 
-          {/* Other Events */}
+          {/* Other Events — tidak dirender sama sekali kalau kosong,
+              supaya grid 1-kegiatan benar-benar cuma 1 kartu di tengah. */}
+          {otherEvents.length > 0 && (
           <div className="space-y-8">
             {otherEvents.map(event => (
               <Link to="/agenda" key={event.id} className="group flex gap-4 items-center bg-white p-4 rounded-xl shadow hover:shadow-lg transition-shadow duration-300">
@@ -77,6 +93,7 @@ const LatestAgendaSection = () => {
               </Link>
             ))}
           </div>
+          )}
         </div>
         <div className="mt-12 flex justify-center text-center">
             <Link to="/agenda">

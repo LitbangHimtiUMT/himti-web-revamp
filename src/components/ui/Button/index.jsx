@@ -9,6 +9,7 @@ export const Button = ({
   size = "md",
   tooltip,
   tooltipPosition = "top",
+  className = "",
   ...rest
 }) => {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -30,8 +31,14 @@ export const Button = ({
           : "left-full top-1/2 transform -translate-y-1/2 ml-2"
   }`;
 
+  // Wrapper sengaja TIDAK w-full: dengan w-full, tombol di dalam flex
+  // parent yang items-center/justify-center tetap nempel kiri, karena
+  // wrapper-nya yang memenuhi lebar, bukan tombolnya. Tanpa w-full,
+  // wrapper menyusut ke ukuran tombol, jadi parent yang menengahkan
+  // benar-benar menengahkan tombolnya (ini akar bug tombol "Coba Lagi"
+  // di ErrorStatus yang mojok ke kiri layar).
   return (
-    <div className="relative inline-flex w-full">
+    <div className="relative inline-flex">
       <button
         {...rest}
         disabled={isDisabled}
@@ -94,7 +101,7 @@ export const Button = ({
                     : variant === "disabled" && rest.onClick
                       ? "hover:bg-gray-400"
                       : ""
-        }`}
+        } ${className}`}
       >
         {children}
       </button>
@@ -119,4 +126,8 @@ Button.propTypes = {
   size: PropTypes.oneOf(["sm", "md", "lg"]),
   tooltip: PropTypes.string,
   tooltipPosition: PropTypes.oneOf(["top", "bottom", "left", "right"]),
+  // Sebelumnya className yang dikirim pemanggil (mis. mt-6, w-full) ikut
+  // ...rest lalu ditimpa className internal tombol, jadi diam-diam hilang.
+  // Sekarang className digabung eksplisit di akhir string kelas tombol.
+  className: PropTypes.string,
 };

@@ -3,6 +3,7 @@ import { Poppins } from "../../../components/ui/Text";
 import { Button } from "../../../components/ui/Button";
 import { Eachable } from "../../../lib/Eachable";
 import { NavDropdown } from "./NavDropdown";
+import { PortalDropdown } from "./PortalDropdown";
 import { NavLink } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import himtiLogo from "../../../core/assets/images/himti-logo.png";
@@ -22,7 +23,6 @@ const kegiatanSubMenu = [
 
 const layananSubMenu = [
   { name: "Dosen", to: "/dosen" },
-  { name: "Klinik", to: "/klinik" },
   { name: "Sertifikat", to: "/sertifikat" },
 ];
 
@@ -118,6 +118,7 @@ export default function Navbar() {
               />
               <NavDropdown title="Kegiatan" items={kegiatanSubMenu} />
               <NavDropdown title="Layanan" items={layananSubMenu} />
+              <PortalDropdown />
             </nav>
 
             <NavLink to="/pendaftaran">
@@ -185,6 +186,22 @@ export default function Navbar() {
                 </NavLink>
               )}
             />
+
+            {/* Portal: di mobile cukup tautan ke halaman /portal,
+                link cepat ke tiap platform ada di halaman itu sendiri. */}
+            <NavLink
+              to="/portal"
+              className={({ isActive }) =>
+                `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                  isActive
+                    ? "bg-gray-100 text-yellow-500"
+                    : "text-gray-600 hover:bg-gray-100"
+                }`
+              }
+              onClick={closeMobileMenu}
+            >
+              Portal
+            </NavLink>
 
             {/* Accordion untuk sub-menu */}
             <MobileAccordion

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { createPortal } from "react-dom";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { MoveUpRight as ArrowIcon } from "lucide-react";
 import { Poppins } from "../../../../components/ui/Text";
 import { Link } from "react-router-dom";
@@ -41,6 +42,27 @@ export default function ImageReveal() {
   const smoothX = useSpring(cursorX, { stiffness: 300, damping: 40 });
   const smoothY = useSpring(cursorY, { stiffness: 300, damping: 40 });
 
+  // Ukuran preview, dipakai untuk menjepit posisinya ke dalam viewport.
+  const PREVIEW_WIDTH = 300;
+  const PREVIEW_HEIGHT = 400;
+  const PREVIEW_MARGIN = 16;
+  // Jepit posisi akhir (setelah spring) agar gambar TIDAK PERNAH keluar
+  // viewport: untuk baris terbawah, gambar bergeser ke atas, bukan
+  // kepotong di bawah. window dibaca di tiap pemanggilan transform,
+  // jadi tetap benar walau ukuran jendela berubah.
+  const previewX = useTransform(smoothX, (v) =>
+    Math.min(
+      Math.max(v, PREVIEW_MARGIN),
+      Math.max(PREVIEW_MARGIN, window.innerWidth - PREVIEW_WIDTH - PREVIEW_MARGIN)
+    )
+  );
+  const previewY = useTransform(smoothY, (v) =>
+    Math.min(
+      Math.max(v, PREVIEW_MARGIN),
+      Math.max(PREVIEW_MARGIN, window.innerHeight - PREVIEW_HEIGHT - PREVIEW_MARGIN)
+    )
+  );
+
   useEffect(() => {
     const updateScreen = () => {
       setIsLargeScreen(window.innerWidth >= 768);
@@ -51,8 +73,10 @@ export default function ImageReveal() {
   }, []);
 
   const onMouseTrack = (e) => {
-    cursorX.set(e.clientX);
-    cursorY.set(e.clientY);
+    // Targetnya pojok kiri-atas gambar (bukan tengah), supaya jepitan
+    // di previewX/previewY langsung bekerja pada tepi gambar.
+    cursorX.set(e.clientX - PREVIEW_WIDTH / 2);
+    cursorY.set(e.clientY - PREVIEW_HEIGHT / 2);
   };
 
   const onHoverActivate = (item) => {
@@ -114,24 +138,36 @@ export default function ImageReveal() {
         </Link>
       ))}
 
-      {/* gambar preview */}
-      {isLargeScreen && focusedItem && (
-        <motion.img
-          src={focusedItem.url}
-          alt={focusedItem.label}
-          className="fixed z-30 object-cover w-[300px] h-[400px] rounded-lg pointer-events-none shadow-2xl dark:bg-gray-950 bg-white"
-          style={{
-            left: smoothX,
-            top: smoothY,
-            x: "-50%",
-            y: "-50%",
-          }}
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.5 }}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        />
-      )}
+      {/* gambar preview — dirender lewat portal ke <body>, BUKAN di dalam
+          container ini. Alasannya dua lapis, dan keduanya penyebab
+          kepotongnya foto baris terbawah (2023/2024):
+          1. Section induk punya `overflow-hidden` + animasi fade-in-up
+             yang fill-mode-nya `both`, sehingga transform-nya menempel
+             selamanya dan section itu menjadi containing block untuk
+             `position: fixed` — gambar yang tadinya fixed ke viewport
+             malah terjepit ke kotak section dan kepotong di bawahnya.
+          2. Gambar lama dipusatkan di kursor (y: -50%, tinggi 400px),
+             jadi untuk baris terbawah setengah gambar jatuh di bawah
+             section/viewport.
+          Dengan portal + jepitan viewport di atas, gambar selalu utuh
+          di dalam layar, menggeser ke atas kalau kursor dekat bawah. */}
+      {isLargeScreen && focusedItem &&
+        createPortal(
+          <motion.img
+            src={focusedItem.url}
+            alt={focusedItem.label}
+            className="fixed z-30 object-cover w-[300px] h-[400px] rounded-lg pointer-events-none shadow-2xl dark:bg-gray-950 bg-white"
+            style={{
+              left: previewX,
+              top: previewY,
+            }}
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.5 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          />,
+          document.body
+        )}
     </div>
   );
 }

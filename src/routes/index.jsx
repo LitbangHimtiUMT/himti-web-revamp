@@ -10,7 +10,7 @@ import TutorialPage from "../features/tutorial/view/TutorialPage";
 import TutorialDetailPage from "../features/tutorial/view/TutorialDetailPage";
 import AgendaPage from "../features/agenda/view/AgendaPage";
 import DosenPage from "../features/dosen/view/DosenPage";
-import KlinikPage from "../features/klinik/view/KlinikPage";
+import PortalPage from "../features/portal/view/PortalPage";
 import SertifikatPage from "../features/sertifikat/view/SertifikatPage";
 import PendaftaranPage from "../features/pendaftaran/view/PendaftaranPage";
 import NotFound from "../features/display/view/NotFound";
@@ -31,7 +31,11 @@ export default function AppRoutes() {
           <Route path="/tutorial/:id" element={<TutorialDetailPage />} />
           <Route path="/agenda" element={<AgendaPage />} />
           <Route path="/dosen" element={<DosenPage />} />
-          <Route path="/klinik" element={<KlinikPage />} />
+          {/* /klinik SENGAJA tidak punya route: halaman Klinik sudah tidak
+              ada dan layanannya pindah ke Danus lewat /portal, jadi URL
+              lama ini jatuh ke halaman 404 (route "*" di bawah), bukan
+              dialihkan ke /portal. */}
+          <Route path="/portal" element={<PortalPage />} />
           <Route path="/sertifikat" element={<SertifikatPage />} />
           <Route path="/pendaftaran" element={<PendaftaranPage />} />
         </Route>

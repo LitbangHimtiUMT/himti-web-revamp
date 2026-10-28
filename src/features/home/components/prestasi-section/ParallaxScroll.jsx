@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { cn } from "../../../../lib/utils";
 import { Poppins } from "../../../../components/ui/Text";
 
-// Card component 
+// Card component
 const Card = ({ item }) => {
   return (
     <div className="h-96 w-full relative rounded-lg overflow-hidden group block">
@@ -33,55 +33,65 @@ const Card = ({ item }) => {
     </div>
   );
 };
-      
+
+// AUDIT (mencegah masalah yang sama seperti di Program Pembelajaran):
+// Parallax versi sebelumnya dihitung dari progres SELURUH section
+// (useScroll target section, offset ["start end", "end start"]): semua
+// kartu di satu kolom digeser dengan nilai y yang SAMA di saat yang
+// sama, padahal kartu atas sudah lewat viewport sementara kartu bawah
+// belum masuk — jadi gerakannya tidak pernah konsisten dengan kartu
+// yang sedang dilihat, dan geseran 150px searah itu juga membuat kartu
+// melayang jauh dari slot grid-nya. Versi ini: tiap kartu punya
+// useScroll-nya sendiri (target = kartu itu sendiri), jadi geserannya
+// selalu berbanding lurus dengan posisi kartu itu di viewport:
+// di tengah viewport y = 0 (posisi natural), di tepi viewport bergeser
+// maksimal 40px (kolom kiri ke atas, kolom kanan ke bawah). Total
+// geseran 80px, jauh di bawah tinggi kartu, jadi tidak ada kartu yang
+// menumpuk kartu lain atau meluber ke section berikutnya.
+const ParallaxItem = ({ direction, children }) => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(
+    scrollYProgress,
+    [0, 1],
+    direction === "up" ? [40, -40] : [-40, 40]
+  );
+
+  return (
+    <motion.div ref={ref} style={{ y }}>
+      {children}
+    </motion.div>
+  );
+};
 
 export const ParallaxScroll = ({ items, className }) => {
-  const gridRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    container: gridRef,
-    offset: ["start start", "end start"], // Animate from the start to the end of the container
-  });
-
-  // Transform untuk kolom kiri (bergerak ke atas)
-  const translateUp = useTransform(scrollYProgress, [0, 1], [0, -150]);
-  // Transform untuk kolom kanan (bergerak ke bawah)
-  const translateDown = useTransform(scrollYProgress, [0, 1], [0, 150]);
-
   // Membagi item menjadi dua kolom berdasarkan index (genap/ganjil)
   const leftColumnItems = items.filter((_, index) => index % 2 === 0);
   const rightColumnItems = items.filter((_, index) => index % 2 !== 0);
 
   return (
-    // Container dengan tinggi tetap dan scrollable, ini adalah kunci efek parallax
-    <div
-      ref={gridRef}
-      className={cn("h-[45rem] w-full overflow-y-auto", className)}
-    >
-      {/* Padding di dalam agar ada ruang untuk scroll */}
-      <div
-        className="grid grid-cols-1 md:grid-cols-2 items-start max-w-5xl mx-auto gap-8 px-4 py-20"
-      >
+    // Tinggi natural mengikuti isi (tidak lagi 45rem + overflow-y-auto):
+    // section ini ikut discroll halaman, bukan discroll di dalam dirinya.
+    <div className={cn("w-full", className)}>
+      <div className="grid grid-cols-1 md:grid-cols-2 items-start max-w-5xl mx-auto gap-8 px-4 py-20">
         {/* Kolom Kiri */}
         <div className="grid gap-8">
           {leftColumnItems.map((item, idx) => (
-            <motion.div
-              style={{ y: translateUp }} // Terapkan animasi bergerak ke atas
-              key={`prestasi-left-${idx}`}
-            >
+            <ParallaxItem key={`prestasi-left-${idx}`} direction="up">
               <Card item={item} />
-            </motion.div>
+            </ParallaxItem>
           ))}
         </div>
 
         {/* Kolom Kanan */}
         <div className="grid gap-8">
           {rightColumnItems.map((item, idx) => (
-            <motion.div
-              style={{ y: translateDown }} // Terapkan animasi bergerak ke bawah
-              key={`prestasi-right-${idx}`}
-            >
+            <ParallaxItem key={`prestasi-right-${idx}`} direction="down">
               <Card item={item} />
-            </motion.div>
+            </ParallaxItem>
           ))}
         </div>
       </div>

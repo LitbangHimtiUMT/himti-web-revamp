@@ -2,23 +2,31 @@ import PropTypes from "prop-types";
 import clsx from "clsx";
 import { Poppins } from "../Text";
 
+// Sengaja TANPA varian dark: — situs ini memaksa latar putih di semua
+// halaman (lihat GridBackground), jadi badge harus selalu tampil dengan
+// latar muda + teks gelap. Sebelumnya, di browser dengan OS dark-mode,
+// Tailwind mengaktifkan dark:bg-*-900/30 (tint pastel di atas kartu putih)
+// dan dark:text-*-300 (teks muda), sehingga teks badge praktis tidak
+// terbaca: latar dan teks sama-sama muda, hanya border gelap yang kelihatan.
+// Dengan menghapus dark: sepenuhnya, badge tampil identik di mode terang
+// maupun gelap, dan kontrasnya terjaga.
 const variantClasses = {
   default:
-    "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200 border border-solid border-gray-800",
+    "bg-gray-100 text-gray-800 border border-solid border-gray-300",
   primary:
-    "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300 border border-solid border-blue-800",
+    "bg-blue-100 text-blue-800 border border-solid border-blue-200",
   secondary:
-    "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300 border border-solid border-purple-800",
+    "bg-purple-100 text-purple-800 border border-solid border-purple-200",
   success:
-    "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 border border-solid border-green-800",
+    "bg-green-100 text-green-800 border border-solid border-green-200",
   warning:
-    "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300 border border-solid border-amber-800",
+    "bg-amber-100 text-amber-800 border border-solid border-amber-200",
   danger:
-    "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300 border border-solid border-red-800",
+    "bg-red-100 text-red-800 border border-solid border-red-200",
   outline:
-    "border border-gray-300 text-gray-700 dark:border-gray-600 dark:text-gray-300 border border-solid border-gray-700",
+    "border border-gray-300 text-gray-700 border border-solid border-gray-300",
   ghost:
-    "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 border border-solid border-gray-700",
+    "text-gray-700 hover:bg-gray-100 border border-solid border-gray-300",
 };
 
 const sizeClasses = {
